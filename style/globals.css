@@ -1,0 +1,40 @@
+@font-face {
+  font-family: "Gotham";
+  src: url("./fonts/Gotham\ Medium.otf") format("truetype");
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Gotham", "Roboto", sans-serif;
+}
+.app {
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+html {
+  scroll-behavior: smooth;
+}
+li {
+  list-style-type: none;
+}
+ul {
+  display: flex;
+}
+a {
+  text-decoration: none;
+}
+p{
+  color: black;
+}
+
+
+/* LANDING PAGE */
