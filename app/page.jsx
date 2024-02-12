@@ -1,11 +1,5 @@
-
 export default function Home() {
-  
+  return <section id="landing__page">
 
-
-  return (
-<section id="landing__page"
->
-
-</section>  );
+  </section>;
 }

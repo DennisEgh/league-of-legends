@@ -38,3 +38,20 @@ p{
 
 
 /* LANDING PAGE */
+#landing__page{
+ background-image: url("https://images.hdqwalls.com/wallpapers/road-avenue-trees-t9.jpg");
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: center;
+  height: 100vh;
+  width: 100vw;
+}
+#landing__page::before{
+  position: absolute;
+    content: '';
+    background: rgba(0,0,0,.25);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

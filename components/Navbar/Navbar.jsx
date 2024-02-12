@@ -1,28 +1,42 @@
-import "./Navbar.css"
-import Link from "next/link"
+import "./Navbar.css";
+import Link from "next/link";
+import Image from "next/image";
+import Logo from "../../style/assets/logo.png";
 
 function Navbar() {
   return (
-    <nav>
-<div className="nav__container">
-  <div className="nav__item">
-<Link href={"/"}>
-<p className="nav__item--para">
-  Home
-</p>
-</Link>
-  </div>
-  <div className="nav__item">
-<Link href={"/"}>
-<p className="nav__item--para">
-Champions
-</p>
-</Link>
-  </div>
-  
-</div>
+    <nav className="fade-in">
+      <div className="nav__container">
+        <div className="nav__item--start">
+          <Link href="/sad">
+            <Image
+              loading="lazy"
+              width={150}
+              height={50}
+              alt="Logo"
+              src={Logo}
+              className="logo"
+            />
+          </Link>
+        </div>
+        <div className="nav__item--end">
+          <Link className="nav__item--link" href="/">
+            Services
+          </Link>
+
+          <Link className="nav__item--link" href="/">
+            About Us
+          </Link>
+          <Link className="nav__item--link" href="/">
+            Contact
+          </Link>
+          <div className="nav__item--account ">
+            <p className="nav__item--account--para">Account</p>
+          </div>
+        </div>
+      </div>
     </nav>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
