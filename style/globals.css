@@ -49,6 +49,11 @@ section {
   align-items: end;
   justify-content: center;
   position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 2;
 }
 section::before {
   position: absolute;
@@ -64,11 +69,7 @@ section::before {
 /* LANDING PAGE */
 #landing__page {
   background-image: url("https://images.hdqwalls.com/wallpapers/road-avenue-trees-t9.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  z-index: 2;
+  
 }
 
 .landing__page--container {
@@ -145,11 +146,6 @@ section::before {
 
 /* PLACEHOLDER */
 #placeholder {
-  background-color: rebeccapurple;
   background-image: url("https://images.inc.com/uploaded_files/image/1920x1080/getty_914989896_411298.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  z-index: 2;
-  position: relative;
+ 
 }
