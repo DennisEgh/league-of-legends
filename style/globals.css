@@ -42,23 +42,15 @@ h4 {
   color: white;
   cursor: default;
 }
-section{
+section {
   height: 100vh;
   width: 100vw;
   display: flex;
   align-items: end;
   justify-content: center;
+  position: relative;
 }
-
-/* LANDING PAGE */
-#landing__page {
-  background-image: url("https://images.hdqwalls.com/wallpapers/road-avenue-trees-t9.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  z-index: 2;
-}
-#landing__page::before {
+section::before {
   position: absolute;
   content: "";
   background: rgba(0, 0, 0, 0.25);
@@ -68,6 +60,17 @@ section{
   right: 0;
   z-index: -1;
 }
+
+/* LANDING PAGE */
+#landing__page {
+  background-image: url("https://images.hdqwalls.com/wallpapers/road-avenue-trees-t9.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 2;
+}
+
 .landing__page--container {
   width: 100%;
   height: calc(100vh - 100px);
@@ -82,7 +85,6 @@ section{
 
 .landing__page--container--para {
   font-size: 20px;
-  
 }
 
 .fade-in {
@@ -125,23 +127,29 @@ section{
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   transition: all 300ms ease;
 }
-.landing__page--container--cta:hover{
-transform: scale(1.05);
-background-color: white;
+.landing__page--container--cta:hover {
+  transform: scale(1.05);
+  background-color: white;
 }
-.landing__page--container--cta:hover .landing__page--container--cta--para{
+.landing__page--container--cta:hover .landing__page--container--cta--para {
   color: black;
 }
-.landing__page--container--cta--para{
+.landing__page--container--cta--para {
   cursor: pointer;
 }
 
 /* INFORMATION */
-#information{
+#information {
   height: 200px;
 }
 
 /* PLACEHOLDER */
-#placeholder{
+#placeholder {
   background-color: rebeccapurple;
+  background-image: url("https://images.inc.com/uploaded_files/image/1920x1080/getty_914989896_411298.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: 2;
+  position: relative;
 }
