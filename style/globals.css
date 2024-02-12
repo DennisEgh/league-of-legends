@@ -42,6 +42,13 @@ h4 {
   color: white;
   cursor: default;
 }
+section{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
 
 /* LANDING PAGE */
 #landing__page {
@@ -49,11 +56,6 @@ h4 {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: end;
-  justify-content: center;
   z-index: 2;
 }
 #landing__page::before {
@@ -132,4 +134,14 @@ background-color: white;
 }
 .landing__page--container--cta--para{
   cursor: pointer;
+}
+
+/* INFORMATION */
+#information{
+  height: 200px;
+}
+
+/* PLACEHOLDER */
+#placeholder{
+  background-color: rebeccapurple;
 }

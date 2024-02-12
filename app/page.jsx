@@ -1,6 +1,7 @@
 import Link from "next/link";
 export default function Home() {
   return (
+    <>
     <section id="landing__page">
       <div className="landing__page--container ">
         <h1 className="landing__page--container--title fade-in">
@@ -19,5 +20,12 @@ export default function Home() {
         </Link>
       </div>
     </section>
+    <section id="information">
+
+    </section>
+    <section id="placeholder">
+      
+    </section>
+    </>
   );
 }
