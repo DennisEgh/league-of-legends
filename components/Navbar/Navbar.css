@@ -24,8 +24,18 @@ nav {
 .nav__item--link{
   color: #E1E1E1;
   font-size: 16px;
+  width: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-weight: normal;
-  
+  transition: all 300ms ease;
+}
+.nav__item--link:hover{
+  background-color: white;
+  color: black;
+  padding: 5px;
+  border-radius: 50px;
 }
 .nav__item--end{
   display: flex;
@@ -47,12 +57,14 @@ cursor: pointer;
 }
 .nav__item--account:hover{
   background-color: white;
+  transform: scale(1.05);
+
 }
 .nav__item--account:hover .nav__item--account--para{
   color: black;
+  cursor: pointer;
 }
 .nav__item--account--para{
-  font-size: 16px;
   color: white;
   transition: all 300ms ease;
 }

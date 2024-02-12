@@ -8,7 +8,7 @@ function Navbar() {
     <nav className="fade-in">
       <div className="nav__container">
         <div className="nav__item--start">
-          <Link href="/sad">
+          <Link href="/">
             <Image
               loading="lazy"
               width={150}
@@ -30,9 +30,11 @@ function Navbar() {
           <Link className="nav__item--link" href="/">
             Contact
           </Link>
+          <Link href="/">
           <div className="nav__item--account ">
             <p className="nav__item--account--para">Account</p>
           </div>
+          </Link>
         </div>
       </div>
     </nav>

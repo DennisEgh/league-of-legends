@@ -3,7 +3,6 @@
   src: url("./fonts/Gotham\ Medium.otf") format("truetype");
 }
 
-
 * {
   margin: 0;
   padding: 0;
@@ -32,26 +31,105 @@ ul {
 a {
   text-decoration: none;
 }
-p{
-  color: black;
+p {
+  color: white;
+  cursor: default;
 }
-
+h1,
+h2,
+h3,
+h4 {
+  color: white;
+  cursor: default;
+}
 
 /* LANDING PAGE */
-#landing__page{
- background-image: url("https://images.hdqwalls.com/wallpapers/road-avenue-trees-t9.jpg");
- background-repeat: no-repeat;
- background-size: cover;
- background-position: center;
+#landing__page {
+  background-image: url("https://images.hdqwalls.com/wallpapers/road-avenue-trees-t9.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   height: 100vh;
   width: 100vw;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  z-index: 2;
 }
-#landing__page::before{
+#landing__page::before {
   position: absolute;
-    content: '';
-    background: rgba(0,0,0,.25);
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  content: "";
+  background: rgba(0, 0, 0, 0.25);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+.landing__page--container {
+  width: 100%;
+  height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 700px;
+  text-align: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.landing__page--container--para {
+  font-size: 20px;
+  
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn ease-in 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in-second {
+  opacity: 0;
+  animation: fadeIn ease-in 0.5s forwards;
+  animation-delay: 2s;
+}
+
+@keyframes fadeInSecond {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.landing__page--container--cta {
+  border: 2px solid white;
+  width: 200px;
+  height: 50px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: all 300ms ease;
+}
+.landing__page--container--cta:hover{
+transform: scale(1.05);
+background-color: white;
+}
+.landing__page--container--cta:hover .landing__page--container--cta--para{
+  color: black;
+}
+.landing__page--container--cta--para{
+  cursor: pointer;
 }
