@@ -60,6 +60,9 @@ cursor: pointer;
   transform: scale(1.05);
 
 }
+.nav__item--account:active{
+  transform: scale(0.9);
+}
 .nav__item--account:hover .nav__item--account--para{
   color: black;
   cursor: pointer;

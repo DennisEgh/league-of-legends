@@ -135,6 +135,9 @@ section::before {
 .landing__page--container--cta:hover .landing__page--container--cta--para {
   color: black;
 }
+.landing__page--container--cta:active{
+  transform: scale(0.9);
+}
 .landing__page--container--cta--para {
   cursor: pointer;
 }

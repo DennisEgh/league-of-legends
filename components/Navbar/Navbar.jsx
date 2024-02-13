@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../style/assets/logo.png";
 
+
 function Navbar() {
   return (
     <nav className="fade-in">
