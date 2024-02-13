@@ -2,6 +2,8 @@ import "../style/globals.css";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import { NextAuthProvider } from "./providers";
+import { Toaster } from "sonner"
+
 
 export const metadata = {
   title: "INVOICY",
@@ -16,6 +18,7 @@ export default function RootLayout({ children }) {
           <main className="app">
             <Navbar />
             {children}
+            <Toaster richColors />
             <Footer />
           </main>
         </NextAuthProvider>

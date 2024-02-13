@@ -4,9 +4,18 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../style/assets/logo.png";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useEffect } from "react";
+import { toast } from "sonner";
 
 function Navbar() {
   const { status, data: session } = useSession();
+  useEffect(() => {
+    if (status === "authenticated") {
+      toast.success("Signed In");
+    } else {
+      toast.warning("Signed Out");
+    }
+  }, [status]);
 
   return (
     <nav className="fade-in">
@@ -24,7 +33,7 @@ function Navbar() {
           </Link>
         </div>
         <div className="nav__item--end">
-          <Link className="nav__item--link" href="/">
+          <Link className="nav__item--link" href="/dashboard">
             Services
           </Link>
 
@@ -42,11 +51,19 @@ function Navbar() {
           <Link className="nav__item--link" href="/">
             Contact
           </Link>
-          <Link href="/">
-            <div className="nav__item--account ">
-              <p className="nav__item--account--para">Account</p>
-            </div>
-          </Link>
+          {status === "authenticated" ? (
+            <Link href="/">
+              <div className="nav__item--account leim">
+                <p className="nav__item--account--para ">Account</p>
+              </div>
+            </Link>
+          ) : (
+            <Link href="/">
+              <div className="nav__item--account  ">
+                <p className="nav__item--account--para">Sign-In</p>
+              </div>
+            </Link>
+          )}
         </div>
       </div>
     </nav>
