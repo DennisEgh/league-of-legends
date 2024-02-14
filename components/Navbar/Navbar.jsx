@@ -36,10 +36,10 @@ function Navbar() {
   }, [status]);
 
   return (
-    <nav className="fade-in">
+    <nav className="fade-in" >
       <div className="nav__container">
         <div className="nav__item--start">
-          <Link href="/">
+          <Link href="/" onClick={handleClose}>
             <Image
               loading="lazy"
               width={150}
@@ -51,27 +51,28 @@ function Navbar() {
           </Link>
         </div>
         <div className="nav__item--end">
-          <Link className="nav__item--link" href="/dashboard">
+          <Link className="nav__item--link" href="/" onClick={handleClose}>
             Services
           </Link>
 
-          <Link className="nav__item--link" href="/">
+          <Link className="nav__item--link" href="/" onClick={handleClose}>
             About Us
           </Link>
 
-          <Link className="nav__item--link" href="/">
+          <Link className="nav__item--link" href="/" onClick={handleClose}>
             Contact
           </Link>
 
           {status === "authenticated" ? (
-            <Link href="/">
+           
               <Avatar
                 onClick={handleClick}
+
                 alt={session?.user.name.slice(0, 2)}
                 src={session?.user.image}
-                sx={{ width: 35, height: 35 }}
+                sx={{ width: 35, height: 35, cursor: "pointer" }}
               />
-            </Link>
+            
           ) : (
             <Link href="/" onClick={() => signIn("google")}>
               <div className="nav__item--account  ">
@@ -116,12 +117,14 @@ function Navbar() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
+        <Link href={"/dashboard"}>
         <MenuItem>
           <ListItemIcon>
             <AccountCircleIcon fontSize="small" onClick={handleClose} />
           </ListItemIcon>
           Dashboard
         </MenuItem>
+        </Link>
         <Divider />
 
         <MenuItem onClick={handleClose}>
