@@ -4,16 +4,20 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../style/assets/logo.png";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { Avatar, Skeleton } from "@mui/material";
 
 function Navbar() {
   const { status, data: session } = useSession();
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     if (status === "authenticated") {
       toast.success("Signed In");
     } else {
       toast.warning("Signed Out");
+      setLoading(false);
     }
   }, [status]);
 
@@ -42,23 +46,22 @@ function Navbar() {
           </Link>
           {status === "authenticated" ? (
             <h1 onClick={() => signOut()}>hello</h1>
-          ) : (
-            <h1 onClick={() => signIn("google")}>bye</h1>
-          )}
+          ) : null}
 
-          <Image src={session?.user?.image} width={60} height={60}></Image>
-          <div>name: {session?.user.name}</div>
           <Link className="nav__item--link" href="/">
             Contact
           </Link>
+
           {status === "authenticated" ? (
             <Link href="/">
-              <div className="nav__item--account leim">
-                <p className="nav__item--account--para ">Account</p>
-              </div>
+              <Avatar
+                alt={session?.user.name.slice(0, 2)}
+                src={session?.user.image}
+                sx={{ width: 35, height: 35 }}
+              />
             </Link>
           ) : (
-            <Link href="/">
+            <Link href="/" onClick={() => signIn("google")}>
               <div className="nav__item--account  ">
                 <p className="nav__item--account--para">Sign-In</p>
               </div>
