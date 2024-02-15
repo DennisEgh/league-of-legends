@@ -30,6 +30,11 @@ nav:hover .nav__item--link:hover{
 nav:hover .account__logo{
   filter: brightness(0) invert(0);
 
+  
+}
+nav:hover .translate{
+  filter: brightness(0) invert(0);
+
 }
 .nav__container {
   align-items: center;
@@ -78,6 +83,10 @@ nav:hover .account__logo{
   }
 }
 
+.css-eqeipb-MuiPaper-root-MuiPopover-paper-MuiMenu-paper::before{
+  right: 7px !important;
+  top: 2px !important;
+}
 /* MODAL */
 .css-6hp17o-MuiList-root-MuiMenu-list {
   display: block !important;

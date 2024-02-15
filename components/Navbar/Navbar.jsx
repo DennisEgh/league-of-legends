@@ -3,7 +3,7 @@ import "./Navbar.css";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../style/assets/logo.png";
-import Account from "../../style/assets/account.png";
+import Account from "../../style/assets/account.svg";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -15,6 +15,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
+import Globe from "../../style/assets/globe.svg";
 
 function Navbar() {
   const { status, data: session } = useSession();
@@ -31,6 +32,7 @@ function Navbar() {
   useEffect(() => {
     if (status === "authenticated") {
       toast.success("Signed In");
+    
     } else {
       toast.warning("Signed Out");
     }
@@ -68,13 +70,12 @@ function Navbar() {
           {status === "authenticated" ? (
             <Avatar
               onClick={handleClick}
-              alt={session?.user.name.slice(0, 2)}
+              alt={session?.user.name}
               src={session?.user.image}
               sx={{ width: 24, height: 24, cursor: "pointer" }}
             />
           ) : (
             <Link href="/" onClick={() => signIn("google")}>
-            
               <Image
                 loading="lazy"
                 width={24}
@@ -85,6 +86,7 @@ function Navbar() {
               />
             </Link>
           )}
+         
         </div>
       </div>
       <Menu
