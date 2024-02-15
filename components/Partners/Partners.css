@@ -12,6 +12,7 @@
 }
 .partners__title{
     color: rgb(255, 255, 255);
+    text-align: center;
 }
 
 .embla {
@@ -34,3 +35,4 @@ justify-content: center;
     min-width: 0;
   }
  
+  

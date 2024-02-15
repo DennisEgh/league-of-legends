@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import "./Partners.css";
-import img1 from "../../style/assets/account.svg";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import SEB from "../../style/assets/SEB.svg";
@@ -14,7 +13,7 @@ const Partners = () => {
   const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay()]);
 
   return (
-    <section id="partners">
+    <section id="partners" >
       <h1 className="partners__title">
         Banks that trust, and offer our services
       </h1>
