@@ -50,7 +50,6 @@ section {
   z-index: 2;
 }
 
-
 /* LANDING PAGE */
 #landing__page {
   align-items: end;
@@ -60,13 +59,17 @@ section {
   background-size: cover;
   background-position: center;
   position: relative;
-background-image: url("https://images.hdqwalls.com/download/forest-photography-3840x2160.jpg");
-
+  background-image: url("https://images.hdqwalls.com/download/a-forest-filled-with-lots-of-trees-covered-in-fog-jg-3840x2160.jpg");
 }
 #landing__page::before {
   position: absolute;
   content: "";
-  background: rgba(0, 0, 0, 0.25);
+
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
   top: 0;
   bottom: 0;
   left: 0;
@@ -136,7 +139,7 @@ background-image: url("https://images.hdqwalls.com/download/forest-photography-3
   transform: scale(1.05);
   background-color: white;
 }
-.landing__page--container--cta:hover .landing__page--container--cta--para{
+.landing__page--container--cta:hover .landing__page--container--cta--para {
   color: black;
 }
 .landing__page--container--cta:active {
@@ -149,10 +152,11 @@ background-image: url("https://images.hdqwalls.com/download/forest-photography-3
   margin-top: 50px;
   display: flex;
   gap: 20px;
-  
+  width: 100%;
+  max-width: 800px;
+  justify-content: center;
+  align-items: center;
+  flex-flow: wrap;
 }
 
 /* PLACEHOLDER */
-#information {
-  background-color: black;
-}

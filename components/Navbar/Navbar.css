@@ -39,9 +39,11 @@ nav:hover .translate{
 .nav__container {
   align-items: center;
   width: 100%;
+  max-width: 1700px;
   height: fit-content;
   display: flex;
   justify-content: space-between;
+  
 }
 .logo {
   filter: brightness(0) invert(1);
