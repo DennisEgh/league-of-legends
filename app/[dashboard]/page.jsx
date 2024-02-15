@@ -1,9 +1,9 @@
-import React from 'react'
+import "./dashboard.css"
 
 function page() {
   return (
     <section id='dashboard'>
-hello
+
     </section>
   )
 }

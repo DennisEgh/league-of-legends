@@ -34,9 +34,10 @@ function Navbar() {
       toast.warning("Signed Out");
     }
   }, [status]);
+ 
 
   return (
-    <nav className="fade-in" >
+    <nav className="fade-in " >
       <div className="nav__container">
         <div className="nav__item--start">
           <Link href="/" onClick={handleClose}>

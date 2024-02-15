@@ -11,7 +11,7 @@ nav {
  align-items: center;
  padding: 20px;
  z-index: 99999;
-}
+ transition: background-color 0.3s ease, opacity 0.3s ease;}
 .nav__container{
   align-items: center;
   width: 80%;
@@ -88,6 +88,9 @@ cursor: pointer;
   }
 }
 
+
+
+
 /* MODAL */
 .css-6hp17o-MuiList-root-MuiMenu-list{
   display: block !important;
@@ -95,3 +98,4 @@ cursor: pointer;
 a{
   color: black;
 }
+
