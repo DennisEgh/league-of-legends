@@ -1,30 +1,53 @@
-
-
 nav {
- position: fixed;
- width: 100%;
- max-width: 100vw;
- height: 100px;
- background-color: transparent;
- display: flex;
- justify-content: center;
- align-items: center;
- padding: 20px;
- z-index: 99999;
- transition: background-color 0.3s ease, opacity 0.3s ease;}
-.nav__container{
+  position: fixed;
+  width: 100%;
+  max-width: 100vw;
+
+  height: 56px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  width: 80%;
+  padding: 20px;
+  z-index: 99999;
+  transition: all 300ms ease;
+}
+nav:hover{
+  background-color: white;
+}
+nav:hover .nav__item--link{
+  color: black;
+}
+nav:hover .logo{
+  filter: brightness(0) invert(0);
+
+}
+nav:hover .nav__item--link:hover{
+  background-color: #e1e1e1;
+  padding: 5px;
+  border-radius: 20px;
+}
+nav:hover .account__logo{
+  filter: brightness(0) invert(0);
+
+}
+.nav__container {
+  align-items: center;
+  width: 100%;
   height: fit-content;
   display: flex;
   justify-content: space-between;
 }
-.logo{
+.logo {
+  filter: brightness(0) invert(1);
+}
+.account__logo {
   filter: brightness(0) invert(1);
   
 }
-.nav__item--link{
-  color: #E1E1E1;
+
+.nav__item--link {
+  color: #ffffff;
   font-size: 16px;
   width: 90px;
   display: flex;
@@ -33,45 +56,12 @@ nav {
   font-weight: normal;
   transition: all 300ms ease;
 }
-.nav__item--link:hover{
-  background-color: white;
-  color: black;
-  padding: 5px;
-  border-radius: 50px;
-}
-.nav__item--end{
+
+.nav__item--middle {
   display: flex;
   gap: 50px;
   align-items: center;
   
-}
-.nav__item--account{
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-cursor: pointer;
-  border-radius: 50px;
-  border: 2px solid white;
-  width: 140px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 300ms ease;
-}
-.nav__item--account:hover{
-  background-color: white;
-  transform: scale(1.05);
-
-}
-.nav__item--account:active{
-  transform: scale(0.9);
-}
-.nav__item--account:hover .nav__item--account--para{
-  color: black;
-  cursor: pointer;
-}
-.nav__item--account--para{
-  color: white;
-  transition: all 300ms ease;
 }
 
 .fade-in {
@@ -88,14 +78,10 @@ cursor: pointer;
   }
 }
 
-
-
-
 /* MODAL */
-.css-6hp17o-MuiList-root-MuiMenu-list{
+.css-6hp17o-MuiList-root-MuiMenu-list {
   display: block !important;
 }
-a{
+a {
   color: black;
 }
-

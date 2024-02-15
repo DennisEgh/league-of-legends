@@ -3,6 +3,7 @@ import "./Navbar.css";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../style/assets/logo.png";
+import Account from "../../style/assets/account.png";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -34,24 +35,23 @@ function Navbar() {
       toast.warning("Signed Out");
     }
   }, [status]);
- 
 
   return (
-    <nav className="fade-in " >
+    <nav className="fade-in ">
       <div className="nav__container">
         <div className="nav__item--start">
           <Link href="/" onClick={handleClose}>
             <Image
               loading="lazy"
-              width={150}
-              height={50}
+              width={100}
+              height={20}
               alt="Logo"
               src={Logo}
               className="logo"
             />
           </Link>
         </div>
-        <div className="nav__item--end">
+        <div className="nav__item--middle">
           <Link className="nav__item--link" href="/" onClick={handleClose}>
             Services
           </Link>
@@ -63,22 +63,26 @@ function Navbar() {
           <Link className="nav__item--link" href="/" onClick={handleClose}>
             Contact
           </Link>
-
+        </div>
+        <div className="nav__item--end">
           {status === "authenticated" ? (
-           
-              <Avatar
-                onClick={handleClick}
-
-                alt={session?.user.name.slice(0, 2)}
-                src={session?.user.image}
-                sx={{ width: 35, height: 35, cursor: "pointer" }}
-              />
-            
+            <Avatar
+              onClick={handleClick}
+              alt={session?.user.name.slice(0, 2)}
+              src={session?.user.image}
+              sx={{ width: 24, height: 24, cursor: "pointer" }}
+            />
           ) : (
             <Link href="/" onClick={() => signIn("google")}>
-              <div className="nav__item--account  ">
-                <p className="nav__item--account--para">Sign-In</p>
-              </div>
+            
+              <Image
+                loading="lazy"
+                width={24}
+                height={24}
+                alt="Sign In"
+                src={Account}
+                className="account__logo"
+              />
             </Link>
           )}
         </div>
@@ -119,12 +123,12 @@ function Navbar() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <Link href={"/dashboard"}>
-        <MenuItem>
-          <ListItemIcon>
-            <AccountCircleIcon fontSize="small" onClick={handleClose} />
-          </ListItemIcon>
-          Dashboard
-        </MenuItem>
+          <MenuItem>
+            <ListItemIcon>
+              <AccountCircleIcon fontSize="small" onClick={handleClose} />
+            </ListItemIcon>
+            Dashboard
+          </MenuItem>
         </Link>
         <Divider />
 
@@ -134,7 +138,7 @@ function Navbar() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem onClick={ () => signOut()}>
+        <MenuItem onClick={() => signOut()}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

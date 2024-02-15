@@ -46,16 +46,10 @@ section {
   height: 100vh;
   width: 100vw;
   display: flex;
-  align-items: end;
-  justify-content: center;
-  position: relative;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  position: relative;
+  
   z-index: 2;
 }
-section::before {
+#landing__page::before {
   position: absolute;
   content: "";
   background: rgba(0, 0, 0, 0.25);
@@ -64,12 +58,21 @@ section::before {
   left: 0;
   right: 0;
   z-index: -1;
+  
 }
 
 /* LANDING PAGE */
 #landing__page {
-  background-image: url("https://images.hdqwalls.com/wallpapers/road-avenue-trees-t9.jpg");
+  align-items: end;
+  justify-content: center;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
   
+  background: rgb(225,29,72);
+  background: linear-gradient(215deg, rgba(225,29,72,1) 0%, rgba(189,24,60,1) 0%, rgba(0,0,0,1) 35%); 
 }
 
 .landing__page--container {
@@ -118,7 +121,8 @@ section::before {
 }
 
 .landing__page--container--cta {
-  border: 2px solid white;
+  
+  background-color: #e11d48;
   width: 200px;
   height: 50px;
   border-radius: 50px;
@@ -130,26 +134,26 @@ section::before {
 }
 .landing__page--container--cta:hover {
   transform: scale(1.05);
-  background-color: white;
+ 
 }
-.landing__page--container--cta:hover .landing__page--container--cta--para {
-  color: black;
-}
+
 .landing__page--container--cta:active{
   transform: scale(0.9);
 }
 .landing__page--container--cta--para {
   cursor: pointer;
 }
-
-/* INFORMATION */
-#information {
-  height: 200px;
+.landing__page--cta--container{
+  margin-top: 50px;
+  display: flex;
+  gap: 50px;
 }
-
+.ctacolor{
+  background-color: rgb(79, 79, 79);
+}
 /* PLACEHOLDER */
-#placeholder {
-  background-image: url("https://images.inc.com/uploaded_files/image/1920x1080/getty_914989896_411298.jpg");
+#information {
+  background-color: black;
  
 }
 

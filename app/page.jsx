@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Partners from "../components/Partners/Partners";
 export default function Home() {
   return (
     <>
@@ -11,19 +12,28 @@ export default function Home() {
         <p className="landing__page--container--para fade-in-second">
           We've got you covered.
         </p>
+        <div className="landing__page--cta--container">
+
         <Link className="landing__page--container--link fade-in-second" href="/">
-          <div className="landing__page--container--cta draw-border">
+          <div className="landing__page--container--cta ctacolor ">
             <p className="landing__page--container--cta--para">
               Get Started
             </p>
           </div>
         </Link>
+        <Link className="landing__page--container--link fade-in-second" href="/">
+          <div className="landing__page--container--cta  ">
+            <p className="landing__page--container--cta--para ">
+              Learn More
+            </p>
+          </div>
+        </Link>
+        </div>
       </div>
     </section>
+    <Partners />
+    
     <section id="information">
-
-    </section>
-    <section id="placeholder">
       
     </section>
     </>
