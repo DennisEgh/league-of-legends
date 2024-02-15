@@ -7,7 +7,7 @@ function Footer() {
         <div className="footer__container">
          <Link href="/">
           <div className="footer__item">
-          Invoicy © 2024
+          INVOICY © 2024
           </div>
           </Link>
           <Link href="/">
