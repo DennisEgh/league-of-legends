@@ -13,9 +13,8 @@ import Spinner from "@/components/Spinner/Spinner";
 import { getPostsDashboard } from "@/lib/contentful";
 import Cms from "@/components/Cms/Cms";
 
-function Page() {
+function Invoicyaccount() {
   const [loading, setLoading] = useState(true);
-  const [loadingCMS, setLoadingCMS] = useState(true);
   const [data, setData] = useState(null);
   const pathname = usePathname();
   const router = useRouter();
@@ -29,9 +28,7 @@ function Page() {
         setData(posts);
       } catch (error) {
         setError(error);
-      } finally {
-        setLoadingCMS(false);
-      }
+      } 
     };
 
     fetchPosts();
@@ -156,4 +153,4 @@ function Page() {
   );
 }
 
-export default Page;
+export default Invoicyaccount;
