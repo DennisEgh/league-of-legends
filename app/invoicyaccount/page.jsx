@@ -13,7 +13,7 @@ import Spinner from "@/components/Spinner/Spinner";
 import { getPostsDashboard } from "@/lib/contentful";
 import Cms from "@/components/Cms/Cms";
 
-function Profile() {
+function Page() {
   const [loading, setLoading] = useState(true);
   const [loadingCMS, setLoadingCMS] = useState(true);
   const [data, setData] = useState(null);
@@ -156,4 +156,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default Page;
