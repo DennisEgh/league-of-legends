@@ -1,13 +1,15 @@
 @font-face {
-  font-family: "Gotham";
-  src: url("./fonts/Gotham\ Medium.otf") format("truetype");
+  font-family: "Gotham book";
+  src: url("./fonts/Gotham-Book.otf") format("truetype");
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Gotham", "Roboto", sans-serif;
+  font-weight: bold;
+  font-family: "Gotham book", "Roboto", sans-serif;
+  
 }
 .app {
   overflow-x: hidden;

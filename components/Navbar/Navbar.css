@@ -60,7 +60,6 @@ nav:hover .translate{
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: normal;
   transition: all 300ms ease;
 }
 

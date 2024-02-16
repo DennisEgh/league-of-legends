@@ -124,7 +124,7 @@ function Navbar() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <Link href={"/dashboard"}>
+        <Link href={"/invoicyaccount"}>
           <MenuItem>
             <ListItemIcon>
               <AccountCircleIcon fontSize="small" onClick={handleClose} />

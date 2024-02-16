@@ -1,0 +1,65 @@
+
+
+#dashboard {
+  background-color: rgb(0, 0, 0);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.account__navigation--container {
+  width: 100%;
+  max-width: 500px;
+}
+.account__navigation {
+  width: 300px;
+  height: 500px;
+  background-color: transparent;
+  padding: 20px;
+  gap: 25px;
+  display: flex;
+  justify-content: center;
+}
+.account__navigation--item {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+  
+}
+.page__container {
+    width: 100%;
+    max-width: 1600px;
+    height: 100%;
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+.account__navigation--title {
+    cursor: pointer;
+
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: 17px;
+}
+.account__navigation--link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: fit-content;
+    cursor: pointer;
+
+}
+
+.dashboard__content {
+  width: 1400px;
+  height: 500px;
+  background-color: grey;
+}
+
+.css-15hku4j-MuiSkeleton-root{
+    background-color: grey !important;
+}
