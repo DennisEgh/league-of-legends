@@ -10,9 +10,7 @@ import { signOut, useSession } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Spinner from "@/components/Spinner/Spinner";
-import SEB from "../../style/assets/test.png";
 import { getPostsDashboard } from "@/lib/contentful";
-import { Skeleton } from "@mui/material";
 import Cms from "@/components/Cms/Cms";
 
 function page() {
@@ -29,7 +27,6 @@ function page() {
       try {
         const posts = await getPostsDashboard();
         setData(posts);
-        console.log(posts);
       } catch (error) {
         setError(error);
       } finally {
