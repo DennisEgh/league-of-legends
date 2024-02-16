@@ -10,15 +10,34 @@ import { signOut, useSession } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Spinner from "@/components/Spinner/Spinner";
-import SEB from "../../style/assets/test.png"
+import SEB from "../../style/assets/test.png";
+import { getPostsDashboard } from "@/lib/contentful";
+import { Skeleton } from "@mui/material";
 
 function page() {
   const [loading, setLoading] = useState(true);
-
+  const [loadingCMS, setLoadingCMS] = useState(true);
+  const [data, setData] = useState(null);
   const pathname = usePathname();
-
   const router = useRouter();
   const { status, data: session } = useSession();
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const posts = await getPostsDashboard();
+        setData(posts);
+        console.log(posts);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoadingCMS(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -122,28 +141,55 @@ function page() {
 
           <div className="dashboard__content">
             <div className="dashboard__greeting">
-
-            <h1 className="dashboard__title">Dashboard</h1>
-            <p className="dashboard__para">
-              Welcome back {session?.user.name}
-            </p>
+              <h1 className="dashboard__title">Dashboard</h1>
+              <p className="dashboard__para">
+                Welcome back{" "}
+                {status === "authenticated" ? session?.user.name : "?"}
+              </p>
             </div>
 
             <div className="dashboard__cms--container">
-            <Link href={""} className="cms__link">
-             <div className="cms__post">
-              <Image 
-              className="cms__image"
-              alt="post image"
-              
-              src={SEB}
-              />
-              <div className="cms__text--container">
-                <h1 className="cms__title">Title</h1>
-                <p className="cms__para">Description</p>
-              </div>
-              </div> 
-              </Link>
+              {data && data.items ? (
+                data.items.map((item, index) => (
+                  <Link key={index} href={""} className="cms__link">
+                    <div className="cms__post">
+                      <img
+                        className="cms__image"
+                        alt="post image"
+                        loading="lazy"
+                        src={item.fields.image.fields.file.url}
+                      />
+                      <div className="cms__text--container">
+                        <h1 className="cms__title">{item.fields.title}</h1>
+                        <p className="cms__para">{item.fields.description}</p>
+                      </div>
+                    </div>
+                  </Link>
+                ))
+              ) : (
+                <div className="cms__post">
+                  <Skeleton
+                    className="skeleton__container"
+                    animation="wave"
+                    variant="rounded"
+                    width={320}
+                    height={118.25}
+                  />
+
+                  <Skeleton
+                    width={320}
+                    height={25}
+                    className="skeleton__text--title"
+                    variant="text"
+                  />
+                  <Skeleton
+                    width={160}
+                    height={25}
+                    className="skeleton__text--para"
+                    variant="text"
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>
