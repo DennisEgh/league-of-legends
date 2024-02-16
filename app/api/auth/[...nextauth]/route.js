@@ -46,9 +46,7 @@ const authOptions = {
       return user;
     },
   },
-  pages:{
-    signIn: "/"
-  }
+  
 };
 
 const handler = NextAuth(authOptions);
