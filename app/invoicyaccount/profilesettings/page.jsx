@@ -18,8 +18,6 @@ function page() {
   const { status } = useSession();
 
   useEffect(() => {
-    console.log(pathname)
-
     if (status === "authenticated") {
     } else if (status !== "loading") {
       router.push("/");
@@ -32,8 +30,6 @@ function page() {
         <div className="account__navigation--container">
           <div className="account__navigation">
             <div className="account__navigation--item">
-
-
               <Link
                 className="account__navigation--link"
                 href={"/invoicyaccount"}
@@ -54,8 +50,6 @@ function page() {
                 </div>
                 <h1 className="account__navigation--title">Dashboard</h1>
               </Link>
-
-
               <Link
                 className="account__navigation--link"
                 href={"/invoicyaccount/profilesettings"}
@@ -76,8 +70,6 @@ function page() {
                 </div>
                 <h1 className="account__navigation--title">Profile Settings</h1>
               </Link>
-
-
               <Link className="account__navigation--link" href={"/invoicyaccount/invoices"}>
                 <div className={`logo__bg ${pathname === "/invoicyaccount/invoices" ? "active" : ""}`}>
                   <Image

@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
-import "../../style/account.css";
-import Dashboard from "../../style/assets/house.svg";
+import "../../../style/account.css";
+import Dashboard from "../../../style/assets/house.svg";
 import Link from "next/link";
-import Settings from "../../style/assets/settings.svg";
-import Invoice from "../../style/assets/paper.svg";
-import Signout from "../../style/assets/signout.svg";
+import Settings from "../../../style/assets/settings.svg";
+import Invoice from "../../../style/assets/paper.svg";
+import Signout from "../../../style/assets/signout.svg";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect } from "react";
