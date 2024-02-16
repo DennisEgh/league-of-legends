@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Spinner from "@/components/Spinner/Spinner";
 
-function page() {
+function Invoices() {
   const [loading, setLoading] = useState(true);
   const pathname = usePathname();
   const { status } = useSession();
@@ -123,4 +123,4 @@ function page() {
   );
 }
 
-export default page;
+export default Invoices;
