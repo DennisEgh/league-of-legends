@@ -133,13 +133,14 @@ function Navbar() {
           </MenuItem>
         </Link>
         <Divider />
-
+<Link href={"/invoicyaccount/profilesettings"}>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
           Settings
         </MenuItem>
+</Link>
         <MenuItem onClick={() => signOut()}>
           <ListItemIcon>
             <Logout fontSize="small" />

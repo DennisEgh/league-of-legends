@@ -117,7 +117,11 @@ function page() {
           </div>
 
           <div className="section__content">
+            <div className="section__greeting">
+
             <h1 className="section__title">Profile Settings</h1>
+            </div>
+
           </div>
         </div>
       </section>
