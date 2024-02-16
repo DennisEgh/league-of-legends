@@ -1,7 +1,7 @@
 import "../style/globals.css";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
-import { NextAuthProvider } from "./api/auth/providers";
+import { NextAuthProvider } from "../lib/providers";
 import { Toaster } from "sonner"
 
 
