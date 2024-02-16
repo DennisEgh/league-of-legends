@@ -12,8 +12,7 @@ const authOptions = {
   ],
   callbacks: {
     async signIn({ user, account }) {
-      console.log("User", user);
-      console.log("Account", account);
+     
 
       if (account.provider === "google") {
         const { name, email } = user;
@@ -23,7 +22,7 @@ const authOptions = {
           const userExists = await User.findOne({ email });
 
           if (!userExists) {
-            const res = await fetch("https://invoicy-ab.netlify.app/api/user", {
+            const res = await fetch("http://localhost:3000/api/user", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
