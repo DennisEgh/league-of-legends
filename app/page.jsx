@@ -7,11 +7,16 @@ export default function Home() {
       <section id="landing__page">
         <div className="landing__page--container">
           <h1 className="landing__page--container--title fade-in">
+            {`
+            
             Can't afford to pay your invoice this month?
+            `}
           </h1>
 
           <p className="landing__page--container--para fade-in-second">
+            {`
             We've got you covered.
+            `}
           </p>
           <div className="landing__page--cta--container">
             <Link
