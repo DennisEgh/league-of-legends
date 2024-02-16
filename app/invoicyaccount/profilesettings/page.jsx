@@ -7,7 +7,7 @@ import Settings from "../../../style/assets/settings.svg";
 import Invoice from "../../../style/assets/paper.svg";
 import Signout from "../../../style/assets/signout.svg";
 import { signOut, useSession } from "next-auth/react";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Spinner from "@/components/Spinner/Spinner";
 
@@ -16,16 +16,13 @@ function page() {
 
   const pathname = usePathname();
 
-  const router = useRouter();
-  const { status, data: session } = useSession();
+  const { status } = useSession();
 
   useEffect(() => {
     if (status === "authenticated") {
       setLoading(false);
-    } else if (status !== "loading") {
-      router.push("/");
     }
-  }, [status, router]);
+  }, [status]);
 
   return (
     <>
@@ -119,11 +116,8 @@ function page() {
             </div>
           </div>
 
-          <div className="dashboard__content">
-            <h1 className="dashboard__title">Dashboard</h1>
-            <p className="dashboard__para">
-              Welcome back {session?.user.name}
-            </p>
+          <div className="section__content">
+            <h1 className="section__title">Profile Settings</h1>
           </div>
         </div>
       </section>
