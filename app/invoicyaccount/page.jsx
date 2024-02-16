@@ -9,8 +9,8 @@ import Signout from "../../style/assets/signout.svg";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Skeleton } from "@mui/material";
 import Spinner from "@/components/Spinner/Spinner";
+import SEB from "../../style/assets/test.png"
 
 function page() {
   const [loading, setLoading] = useState(true);
@@ -121,10 +121,30 @@ function page() {
           </div>
 
           <div className="dashboard__content">
+            <div className="dashboard__greeting">
+
             <h1 className="dashboard__title">Dashboard</h1>
             <p className="dashboard__para">
               Welcome back {session?.user.name}
             </p>
+            </div>
+
+            <div className="dashboard__cms--container">
+            <Link href={""} className="cms__link">
+             <div className="cms__post">
+              <Image 
+              className="cms__image"
+              alt="post image"
+              
+              src={SEB}
+              />
+              <div className="cms__text--container">
+                <h1 className="cms__title">Title</h1>
+                <p className="cms__para">Description</p>
+              </div>
+              </div> 
+              </Link>
+            </div>
           </div>
         </div>
       </section>
