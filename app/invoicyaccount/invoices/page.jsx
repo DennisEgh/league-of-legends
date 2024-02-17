@@ -16,6 +16,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { toast } from "sonner";
 import { DateField, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { AddCircleOutlineOutlined } from "@mui/icons-material";
 
 function Invoices() {
   const [loading, setLoading] = useState(true);
@@ -40,7 +41,6 @@ function Invoices() {
   });
 
   const handleInputChange = (e) => {
-    console.log(formData);
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -114,6 +114,15 @@ function Invoices() {
         console.error("Failed to create invoice:", response.statusText);
         return;
       }
+      handleClose();
+      setFormData({
+        invoiceName: "",
+        OCR: "",
+        BankGiro: "",
+        Amount: "",
+        dueDate: null,
+      });
+
       fetchUser();
       setLoading(true);
       toast.success(`Invoice created`);
@@ -246,20 +255,24 @@ function Invoices() {
             </div>
 
             <div className="invoice__interface--container">
-              {userData.length > 0 && (
-                <span className="pagination__current-page">
-                  Page {currentPage} of{" "}
-                  {Math.ceil(userData.length / itemsPerPage)}
-                </span>
-              )}
-              {userData.length === 0 && (
-                <span className="pagination__current-page">
-                  No invoices found
-                </span>
-              )}
-              <button onClick={() => createInvoice(session?.user.email)}>
-                click
-              </button>{" "}
+              <div className="flexbox">
+                {userData.length > 0 && (
+                  <span className="pagination__current-page">
+                    Page {currentPage} of{" "}
+                    {Math.ceil(userData.length / itemsPerPage)}
+                  </span>
+                )}
+                {userData.length === 0 && (
+                  <span className="pagination__current-page">
+                    No invoices found
+                  </span>
+                )}
+
+                <AddCircleOutlineOutlined
+                  onClick={handleOpen}
+                  className="add__invoice"
+                />
+              </div>
               <div className="invoice__interface--overview">
                 <div className="invoice__search--container">
                   <SearchIcon />
@@ -292,7 +305,7 @@ function Invoices() {
                     <p className="invoice__interface--para">{user.OCR}</p>
                     <p className="invoice__interface--para">{user.Due_Date}</p>
                     <p className="invoice__interface--para">
-                      {user.Amount_Due} kr
+                      {user.Amount_Due.toFixed(2)} kr
                     </p>
                     <DeleteOutlineIcon
                       onClick={() => handleDelete(user._id)}
@@ -337,7 +350,6 @@ function Invoices() {
             )}
           </div>
         </div>
-        <Button onClick={handleOpen}>Open modal</Button>
         <Modal
           className="modal"
           open={open}
@@ -397,7 +409,7 @@ function Invoices() {
             <Button
               onClick={() => createInvoice(session?.user.email, formData)}
             >
-              Open modal
+              Save Invoice
             </Button>
           </Box>
         </Modal>
