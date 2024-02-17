@@ -111,8 +111,6 @@ function Invoices() {
         console.error("Failed to delete invoice:", response.statusText);
         return;
       }
-
-      fetchUser();
     } catch (error) {
       console.error("Error deleting invoice:", error);
     }
@@ -230,7 +228,6 @@ function Invoices() {
                     inputProps={{ "aria-label": "search invoices" }}
                   />
                 </div>
-                
 
                 <p className="invoice__interface--para ">OCR</p>
 
