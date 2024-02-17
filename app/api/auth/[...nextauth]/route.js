@@ -12,8 +12,6 @@ const authOptions = {
   ],
   callbacks: {
     async signIn({ user, account }) {
-     
-
       if (account.provider === "google") {
         const { name, email } = user;
         try {
@@ -22,7 +20,7 @@ const authOptions = {
           const userExists = await User.findOne({ email });
 
           if (!userExists) {
-            const res = await fetch("http://localhost:3000/api/user", {
+            const res = await fetch("http://localhost:3000/api/userCreate", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -45,7 +43,9 @@ const authOptions = {
       return user;
     },
   },
-  
+  pages: {
+    signIn: "/",
+  },
 };
 
 const handler = NextAuth(authOptions);

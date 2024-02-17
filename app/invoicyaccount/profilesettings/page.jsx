@@ -18,29 +18,56 @@ function Profilesettings() {
 
   const { status, data: session } = useSession();
 
-
-
-  
-  useEffect(() => {
-    if (status === "authenticated") {
-      setLoading(false);
-    }
-  }, [status]);
+  const [userData, setUserData] = useState([]);
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchUser = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/posts");
+        const res = await fetch("http://localhost:3000/api/userFetch");
         const data = await res.json();
-        console.log(data);
+
+        const userEmail = session?.user?.email;
+        if (userEmail) {
+          const filteredPosts = data.filter((user) => user.email === userEmail);
+          setUserData(filteredPosts);
+        }
+
+        setLoading(false); // Set loading to false after fetching data
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-    
-    fetchPosts();
-  }, []);
 
+    if (status === "authenticated") {
+      fetchUser();
+      setLoading(false);
+    }
+  }, [status, session]);
+  console.log(userData)
+
+  async function createInvoice(email) {
+    try {
+      
+      let OCR = "81238-31231s";
+      let BankGiro = "032131-31241"
+      let Due_Date= "04-03-2025"
+
+      const response = await fetch("http://localhost:3000/api/invoiceCreate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ OCR, email, BankGiro, Due_Date }),
+      });
+
+      if (!response.ok) {
+        console.error("Failed to create invoice:", response.statusText);
+        return;
+      }
+    } catch (error) {
+      console.error("Error creating invoice:", error);
+    }
+  }
   return (
     <>
       {loading && <Spinner />}
@@ -136,6 +163,12 @@ function Profilesettings() {
           <div className="section__content">
             <div className="section__greeting">
               <h1 className="section__title">Profile Settings</h1>
+              {session?.user?.email && (
+                <h1 className="user-email">User Email: {session.user.email}</h1>
+              )}
+              <button onClick={() => createInvoice(session?.user.email)}>
+                click
+              </button>{" "}
             </div>
           </div>
         </div>
