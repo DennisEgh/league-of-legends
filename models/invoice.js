@@ -10,15 +10,18 @@ const invoiceSchema = new Schema(
       type: String,
       required: true,
     },
-    BankGiro:{
+    BankGiro: {
       type: String,
       required: true,
     },
     Due_Date: {
       type: Date,
-      require
+      require,
     },
-   
+    Amount_Due: {
+      type: Number,
+      required: true,
+    },
   },
   { timestamps: true }
 );

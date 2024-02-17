@@ -51,13 +51,14 @@ function Profilesettings() {
       let OCR = "81238-31231s";
       let BankGiro = "032131-31241"
       let Due_Date= "04-03-2025"
+      let Amount_Due = 2524
 
       const response = await fetch("http://localhost:3000/api/invoiceCreate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ OCR, email, BankGiro, Due_Date }),
+        body: JSON.stringify({ OCR, email, BankGiro, Due_Date, Amount_Due }),
       });
 
       if (!response.ok) {
