@@ -115,7 +115,7 @@ function Invoices() {
       }
 
       fetchUser();
-      toast.warning(`Invoice deleted`);
+      toast.error(`Invoice deleted`);
     } catch (error) {
       console.error("Error deleting invoice:", error);
     }
