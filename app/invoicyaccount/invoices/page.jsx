@@ -92,7 +92,7 @@ function Invoices() {
     try {
       const { invoiceName, OCR, BankGiro, dueDate, Amount } = formData;
       const formattedDueDate = dueDate
-        ? `${dueDate.$D}/${dueDate.$M}/${dueDate.$y}`
+        ? `${dueDate.$M + 1}/${dueDate.$D}/${dueDate.$y}`
         : null;
 
       const response = await fetch("http://localhost:3000/api/invoiceCreate", {
