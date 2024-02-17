@@ -15,7 +15,6 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
-import Globe from "../../style/assets/globe.svg";
 
 function Navbar() {
   const { status, data: session } = useSession();

@@ -13,6 +13,8 @@ import Spinner from "@/components/Spinner/Spinner";
 import { InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { toast } from "sonner";
+
 
 function Invoices() {
   const [loading, setLoading] = useState(true);
@@ -112,6 +114,7 @@ function Invoices() {
       }
 
       fetchUser();
+      toast.warning(`Invoice deleted`)
     } catch (error) {
       console.error("Error deleting invoice:", error);
     }
@@ -226,6 +229,9 @@ function Invoices() {
                   No invoices found
                 </span>
               )}
+                <button onClick={() => createInvoice(session?.user.email)}>
+                click
+              </button>{" "}
 
               <div className="invoice__interface--overview">
                 <div className="invoice__search--container">
