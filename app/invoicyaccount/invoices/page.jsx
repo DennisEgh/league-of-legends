@@ -55,7 +55,6 @@ function Invoices() {
     }
   };
   useEffect(() => {
-
     if (status === "authenticated") {
       fetchUser();
       setLoading(false);
@@ -112,8 +111,7 @@ function Invoices() {
         return;
       }
 
-      fetchUser()
-
+      fetchUser();
     } catch (error) {
       console.error("Error deleting invoice:", error);
     }
@@ -217,10 +215,18 @@ function Invoices() {
             </div>
 
             <div className="invoice__interface--container">
-              <span className="pagination__current-page">
-                Page {currentPage} of{" "}
-                {Math.ceil(userData.length / itemsPerPage)}
-              </span>
+              {userData.length > 0 && (
+                <span className="pagination__current-page">
+                  Page {currentPage} of{" "}
+                  {Math.ceil(userData.length / itemsPerPage)}
+                </span>
+              )}
+              {userData.length === 0 && (
+                <span className="pagination__current-page">
+                  No invoices found
+                </span>
+              )}
+
               <div className="invoice__interface--overview">
                 <div className="invoice__search--container">
                   <SearchIcon />
