@@ -10,16 +10,18 @@ import { signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Spinner from "@/components/Spinner/Spinner";
-import { InputBase } from "@mui/material";
+import { InputBase, Pagination } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 function Profilesettings() {
   const [loading, setLoading] = useState(true);
-
+  const [searchQuery, setSearchQuery] = useState("");
   const pathname = usePathname();
-
   const { status, data: session } = useSession();
-
   const [userData, setUserData] = useState([]);
+
+  const handleSearch = (event) => {
+    setSearchQuery(event.target.value);
+  };
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -33,7 +35,7 @@ function Profilesettings() {
           setUserData(filteredPosts);
         }
 
-        setLoading(false); // Set loading to false after fetching data
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -48,6 +50,7 @@ function Profilesettings() {
 
   async function createInvoice(email) {
     try {
+      let Name = "bil";
       let OCR = "81238-31231s";
       let BankGiro = "032131-31241";
       let Due_Date = "04-03-2025";
@@ -58,7 +61,14 @@ function Profilesettings() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ OCR, email, BankGiro, Due_Date, Amount_Due }),
+        body: JSON.stringify({
+          OCR,
+          email,
+          BankGiro,
+          Due_Date,
+          Amount_Due,
+          Name,
+        }),
       });
 
       if (!response.ok) {
@@ -168,15 +178,41 @@ function Profilesettings() {
             <div className="invoice__interface--container">
               <div className="invoice__interface--overview">
                 <div className="invoice__search--container">
-
-                <SearchIcon />
-                <InputBase
-                  sx={{ ml: 1, flex: 1 }}
-                  placeholder="Search Invoices"
-                  inputProps={{ "aria-label": "search invoices" }}
+                  <SearchIcon />
+                  <InputBase
+                    onChange={handleSearch}
+                    sx={{ ml: 1, flex: 1 }}
+                    placeholder="Search Invoices"
+                    inputProps={{ "aria-label": "search invoices" }}
                   />
-                  </div>
+                </div>
+
+                <p className="invoice__interface--para ">OCR</p>
+
+                <p className="invoice__interface--para ">BankGiro</p>
+                <p className="invoice__interface--para ">Due Date </p>
+                <p className="invoice__interface--para ">Amount Due </p>
               </div>
+
+              {userData
+
+                .filter((user) =>
+                  user.Name.toLowerCase().includes(searchQuery.toLowerCase())
+                )
+                .slice(0, 4)
+                .map((user, index) => (
+                  <div className="invoice__interface--overview" key={index}>
+                    <div className="invoice__name--container">
+                      <p className="invoice__interface--para">{user.Name}</p>
+                    </div>
+                    <p className="invoice__interface--para">{user.BankGiro}</p>
+                    <p className="invoice__interface--para">{user.OCR}</p>
+                    <p className="invoice__interface--para">{user.Due_Date}</p>
+                    <p className="invoice__interface--para">
+                      {user.Amount_Due} kr
+                    </p>
+                  </div>
+                ))}
             </div>
           </div>
         </div>

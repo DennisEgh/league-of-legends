@@ -6,6 +6,10 @@ const invoiceSchema = new Schema(
       type: String,
       required: true,
     },
+    Name: {
+      type: String,
+      required: true,
+    },
     OCR: {
       type: String,
       required: true,
@@ -15,7 +19,7 @@ const invoiceSchema = new Schema(
       required: true,
     },
     Due_Date: {
-      type: Date,
+      type: String,
       require,
     },
     Amount_Due: {
