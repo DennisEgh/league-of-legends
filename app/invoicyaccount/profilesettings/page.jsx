@@ -16,13 +16,30 @@ function Profilesettings() {
 
   const pathname = usePathname();
 
-  const { status } = useSession();
+  const { status, data: session } = useSession();
 
+
+
+  
   useEffect(() => {
     if (status === "authenticated") {
       setLoading(false);
     }
   }, [status]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/api/posts");
+        const data = await res.json();
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    
+    fetchPosts();
+  }, []);
 
   return (
     <>
@@ -118,10 +135,8 @@ function Profilesettings() {
 
           <div className="section__content">
             <div className="section__greeting">
-
-            <h1 className="section__title">Profile Settings</h1>
+              <h1 className="section__title">Profile Settings</h1>
             </div>
-
           </div>
         </div>
       </section>
