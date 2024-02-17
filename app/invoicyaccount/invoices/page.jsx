@@ -15,7 +15,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { toast } from "sonner";
 
-
 function Invoices() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -91,6 +90,8 @@ function Invoices() {
         console.error("Failed to create invoice:", response.statusText);
         return;
       }
+      fetchUser();
+      toast.success(`Invoice created`);
     } catch (error) {
       console.error("Error creating invoice:", error);
     }
@@ -114,7 +115,7 @@ function Invoices() {
       }
 
       fetchUser();
-      toast.warning(`Invoice deleted`)
+      toast.warning(`Invoice deleted`);
     } catch (error) {
       console.error("Error deleting invoice:", error);
     }
@@ -229,10 +230,9 @@ function Invoices() {
                   No invoices found
                 </span>
               )}
-                <button onClick={() => createInvoice(session?.user.email)}>
+              <button onClick={() => createInvoice(session?.user.email)}>
                 click
               </button>{" "}
-
               <div className="invoice__interface--overview">
                 <div className="invoice__search--container">
                   <SearchIcon />
@@ -250,7 +250,6 @@ function Invoices() {
                 <p className="invoice__interface--para ">Due Date </p>
                 <p className="invoice__interface--para ">Amount Due </p>
               </div>
-
               {userData
 
                 .filter((user) =>
