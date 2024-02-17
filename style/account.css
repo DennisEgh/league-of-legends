@@ -101,6 +101,7 @@
 }
 
 .invoice__interface--overview {
+  position: relative;
   margin-bottom: 50px;
   padding: 20px;
   z-index: 1;
@@ -133,4 +134,30 @@
 }
 .invoice__interface--para {
   width: 125px;
+}
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.pagination__button {
+  background-color: white;
+  width: fit-content;
+  padding: 8px;
+  border-radius: 40px;
+  transition: all 300ms ease;
+  cursor: pointer;
+}
+.pagination__button:hover {
+  transform: scale(1.05);
+}
+.pagination__current-page {
+  color: white;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+.delete {
+  position: absolute;
+  right: 20px;
 }

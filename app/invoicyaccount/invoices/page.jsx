@@ -10,14 +10,29 @@ import { signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Spinner from "@/components/Spinner/Spinner";
-import { InputBase, Pagination } from "@mui/material";
+import { InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-function Profilesettings() {
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+
+function Invoices() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const pathname = usePathname();
   const { status, data: session } = useSession();
   const [userData, setUserData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemsPerPage = 4;
+  const pagesToShow = 2;
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= Math.ceil(userData.length / itemsPerPage)) {
+      setCurrentPage(newPage);
+    }
+  };
 
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
@@ -79,6 +94,30 @@ function Profilesettings() {
       console.error("Error creating invoice:", error);
     }
   }
+
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/invoiceDelete`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id,
+        }),
+      });
+
+      if (!response.ok) {
+        console.error("Failed to delete invoice:", response.statusText);
+        return;
+      }
+
+      fetchUser();
+    } catch (error) {
+      console.error("Error deleting invoice:", error);
+    }
+  };
+
   return (
     <>
       {loading && <Spinner />}
@@ -175,7 +214,12 @@ function Profilesettings() {
             <div className="section__greeting">
               <h1 className="section__title">Invoices</h1>
             </div>
+
             <div className="invoice__interface--container">
+              <span className="pagination__current-page">
+                Page {currentPage} of{" "}
+                {Math.ceil(userData.length / itemsPerPage)}
+              </span>
               <div className="invoice__interface--overview">
                 <div className="invoice__search--container">
                   <SearchIcon />
@@ -199,7 +243,7 @@ function Profilesettings() {
                 .filter((user) =>
                   user.Name.toLowerCase().includes(searchQuery.toLowerCase())
                 )
-                .slice(0, 4)
+                .slice(startIndex, endIndex)
                 .map((user, index) => (
                   <div className="invoice__interface--overview" key={index}>
                     <div className="invoice__name--container">
@@ -211,9 +255,47 @@ function Profilesettings() {
                     <p className="invoice__interface--para">
                       {user.Amount_Due} kr
                     </p>
+                    <DeleteOutlineIcon
+                      onClick={() => handleDelete(user._id)}
+                      className="delete"
+                    />
                   </div>
                 ))}
             </div>
+            {userData.length > itemsPerPage && (
+              <div className="pagination-controls">
+                <div
+                  className="pagination__button"
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                >
+                  Previous
+                </div>
+                {[...Array(Math.ceil(userData.length / itemsPerPage)).keys()]
+                  .slice(currentPage - 1, currentPage + pagesToShow - 1)
+                  .map((page) => (
+                    <div
+                      key={page}
+                      className={`pagination__button ${
+                        currentPage === page + 1 ? "active" : ""
+                      }`}
+                      onClick={() => handlePageChange(page + 1)}
+                    >
+                      {page + 1}
+                    </div>
+                  ))}
+
+                <div
+                  className="pagination__button"
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={
+                    currentPage === Math.ceil(userData.length / itemsPerPage)
+                  }
+                >
+                  Next
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -221,4 +303,4 @@ function Profilesettings() {
   );
 }
 
-export default Profilesettings;
+export default Invoices;
