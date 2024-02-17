@@ -10,10 +10,12 @@ import { signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Spinner from "@/components/Spinner/Spinner";
-import { InputBase } from "@mui/material";
+import { Box, Button, InputBase, Modal, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { toast } from "sonner";
+import { DateField, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 function Invoices() {
   const [loading, setLoading] = useState(true);
@@ -22,12 +24,36 @@ function Invoices() {
   const { status, data: session } = useSession();
   const [userData, setUserData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const itemsPerPage = 4;
   const pagesToShow = 2;
-
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
+  const [formData, setFormData] = useState({
+    invoiceName: "",
+    OCR: "",
+    BankGiro: "",
+    Amount: "",
+    dueDate: null,
+  });
+
+  const handleInputChange = (e) => {
+    console.log(formData);
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleDateChange = (date) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      dueDate: date,
+    }));
+  };
 
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= Math.ceil(userData.length / itemsPerPage)) {
@@ -61,15 +87,13 @@ function Invoices() {
       setLoading(false);
     }
   }, [status, session]);
-  console.log(userData);
 
-  async function createInvoice(email) {
+  async function createInvoice(email, formData) {
     try {
-      let Name = "bil";
-      let OCR = "81238-31231s";
-      let BankGiro = "032131-31241";
-      let Due_Date = "04-03-2025";
-      let Amount_Due = 2524;
+      const { invoiceName, OCR, BankGiro, dueDate, Amount } = formData;
+      const formattedDueDate = dueDate
+        ? `${dueDate.$D}/${dueDate.$M}/${dueDate.$y}`
+        : null;
 
       const response = await fetch("http://localhost:3000/api/invoiceCreate", {
         method: "POST",
@@ -80,9 +104,9 @@ function Invoices() {
           OCR,
           email,
           BankGiro,
-          Due_Date,
-          Amount_Due,
-          Name,
+          Due_Date: formattedDueDate,
+          Amount_Due: Amount,
+          Name: invoiceName,
         }),
       });
 
@@ -91,6 +115,7 @@ function Invoices() {
         return;
       }
       fetchUser();
+      setLoading(true);
       toast.success(`Invoice created`);
     } catch (error) {
       console.error("Error creating invoice:", error);
@@ -115,6 +140,8 @@ function Invoices() {
       }
 
       fetchUser();
+      setLoading(true);
+
       toast.error(`Invoice deleted`);
     } catch (error) {
       console.error("Error deleting invoice:", error);
@@ -310,6 +337,70 @@ function Invoices() {
             )}
           </div>
         </div>
+        <Button onClick={handleOpen}>Open modal</Button>
+        <Modal
+          className="modal"
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box className="box__css">
+            <TextField
+              name="invoiceName"
+              value={formData.invoiceName}
+              onChange={handleInputChange}
+              className="modal__text--field"
+              id="outlined-basic"
+              placeholder="Invoice Name"
+              variant="outlined"
+            />
+
+            <TextField
+              name="OCR"
+              value={formData.OCR}
+              onChange={handleInputChange}
+              className="modal__text--field"
+              id="outlined-basic"
+              placeholder="OCR Number"
+              variant="outlined"
+            />
+
+            <TextField
+              name="BankGiro"
+              value={formData.BankGiro}
+              onChange={handleInputChange}
+              className="modal__text--field"
+              id="outlined-basic"
+              placeholder="BankGiro"
+              variant="outlined"
+            />
+            <TextField
+              name="Amount"
+              value={formData.Amount}
+              onChange={handleInputChange}
+              className="modal__text--field"
+              id="outlined-basic"
+              placeholder="Amount"
+              variant="outlined"
+            />
+
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DateField
+                value={formData.dueDate}
+                onChange={(newDate) => handleDateChange(newDate)}
+                className="modal__text--field"
+                placeholder="Due date"
+              />
+            </LocalizationProvider>
+
+            <Button
+              onClick={() => createInvoice(session?.user.email, formData)}
+            >
+              Open modal
+            </Button>
+          </Box>
+        </Modal>
       </section>
     </>
   );
