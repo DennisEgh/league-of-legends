@@ -230,6 +230,7 @@ function Invoices() {
                     inputProps={{ "aria-label": "search invoices" }}
                   />
                 </div>
+                
 
                 <p className="invoice__interface--para ">OCR</p>
 
