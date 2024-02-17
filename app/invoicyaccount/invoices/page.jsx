@@ -38,23 +38,23 @@ function Invoices() {
     setSearchQuery(event.target.value);
   };
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await fetch("http://localhost:3000/api/userFetch");
-        const data = await res.json();
+  const fetchUser = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/api/userFetch");
+      const data = await res.json();
 
-        const userEmail = session?.user?.email;
-        if (userEmail) {
-          const filteredPosts = data.filter((user) => user.email === userEmail);
-          setUserData(filteredPosts);
-        }
-
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
+      const userEmail = session?.user?.email;
+      if (userEmail) {
+        const filteredPosts = data.filter((user) => user.email === userEmail);
+        setUserData(filteredPosts);
       }
-    };
+
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  useEffect(() => {
 
     if (status === "authenticated") {
       fetchUser();
@@ -111,6 +111,9 @@ function Invoices() {
         console.error("Failed to delete invoice:", response.statusText);
         return;
       }
+
+      fetchUser()
+
     } catch (error) {
       console.error("Error deleting invoice:", error);
     }
