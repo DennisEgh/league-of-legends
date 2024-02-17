@@ -10,18 +10,65 @@ import { signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Spinner from "@/components/Spinner/Spinner";
-
-function Invoices() {
+import { InputBase } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+function Profilesettings() {
   const [loading, setLoading] = useState(true);
+
   const pathname = usePathname();
-  const { status } = useSession();
+
+  const { status, data: session } = useSession();
+
+  const [userData, setUserData] = useState([]);
 
   useEffect(() => {
-    if (status === "authenticated") {
-      setLoading(false);
-    } 
-  }, [status]);
+    const fetchUser = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/api/userFetch");
+        const data = await res.json();
 
+        const userEmail = session?.user?.email;
+        if (userEmail) {
+          const filteredPosts = data.filter((user) => user.email === userEmail);
+          setUserData(filteredPosts);
+        }
+
+        setLoading(false); // Set loading to false after fetching data
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    if (status === "authenticated") {
+      fetchUser();
+      setLoading(false);
+    }
+  }, [status, session]);
+  console.log(userData);
+
+  async function createInvoice(email) {
+    try {
+      let OCR = "81238-31231s";
+      let BankGiro = "032131-31241";
+      let Due_Date = "04-03-2025";
+      let Amount_Due = 2524;
+
+      const response = await fetch("http://localhost:3000/api/invoiceCreate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ OCR, email, BankGiro, Due_Date, Amount_Due }),
+      });
+
+      if (!response.ok) {
+        console.error("Failed to create invoice:", response.statusText);
+        return;
+      }
+    } catch (error) {
+      console.error("Error creating invoice:", error);
+    }
+  }
   return (
     <>
       {loading && <Spinner />}
@@ -115,7 +162,22 @@ function Invoices() {
           </div>
 
           <div className="section__content">
-            <h1 className="section__title">Invoices</h1>
+            <div className="section__greeting">
+              <h1 className="section__title">Invoices</h1>
+            </div>
+            <div className="invoice__interface--container">
+              <div className="invoice__interface--overview">
+                <div className="invoice__search--container">
+
+                <SearchIcon />
+                <InputBase
+                  sx={{ ml: 1, flex: 1 }}
+                  placeholder="Search Invoices"
+                  inputProps={{ "aria-label": "search invoices" }}
+                  />
+                  </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -123,4 +185,4 @@ function Invoices() {
   );
 }
 
-export default Invoices;
+export default Profilesettings;
