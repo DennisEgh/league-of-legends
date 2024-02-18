@@ -12,30 +12,7 @@ nav {
   z-index: 3;
   transition: all 300ms ease;
 }
-nav:hover{
-  background-color: white;
-}
-nav:hover .nav__item--link{
-  color: black;
-}
-nav:hover .logo{
-  filter: brightness(0) invert(0);
 
-}
-nav:hover .nav__item--link:hover{
-  background-color: #e1e1e1;
-  padding: 5px;
-  border-radius: 20px;
-}
-nav:hover .account__logo{
-  filter: brightness(0) invert(0);
-
-  
-}
-nav:hover .translate{
-  filter: brightness(0) invert(0);
-
-}
 .nav__container {
   align-items: center;
   width: 100%;
@@ -88,6 +65,21 @@ nav:hover .translate{
   right: 7px !important;
   top: 2px !important;
 }
+
+.nav__item--end{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.burger{
+  filter: brightness(0) invert(1);
+width: 30px !important;
+height: 30px  !important;
+
+}
+.burger__menu{
+  display: none ;
+}
 /* MODAL */
 .css-6hp17o-MuiList-root-MuiMenu-list {
   display: block !important;
@@ -95,3 +87,16 @@ nav:hover .translate{
 a {
   color: black;
 }
+
+
+
+
+@media (max-width: 600px){
+ .nav__item--middle{
+  display: none;
+ }
+.burger__menu{
+  display: block;
+}
+}
+

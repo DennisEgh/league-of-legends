@@ -45,30 +45,7 @@ function Profilesettings() {
   }, [status, session]);
   console.log(userData)
 
-  async function createInvoice(email) {
-    try {
-      
-      let OCR = "81238-31231s";
-      let BankGiro = "032131-31241"
-      let Due_Date= "04-03-2025"
-      let Amount_Due = 2524
-
-      const response = await fetch("http://localhost:3000/api/invoiceCreate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ OCR, email, BankGiro, Due_Date, Amount_Due }),
-      });
-
-      if (!response.ok) {
-        console.error("Failed to create invoice:", response.statusText);
-        return;
-      }
-    } catch (error) {
-      console.error("Error creating invoice:", error);
-    }
-  }
+  
   return (
     <>
       {loading && <Spinner />}
@@ -167,9 +144,7 @@ function Profilesettings() {
               {session?.user?.email && (
                 <h1 className="user-email">User Email: {session.user.email}</h1>
               )}
-              <button onClick={() => createInvoice(session?.user.email)}>
-                click
-              </button>{" "}
+              
             </div>
           </div>
         </div>

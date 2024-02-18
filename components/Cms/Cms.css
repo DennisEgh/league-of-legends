@@ -1,15 +1,13 @@
 
 .dashboard__cms--container {
-  width: 100%;
-  max-width: 1000px;
-  height: 100%;
+width: 100%;
+height: 400px;
+flex-wrap: wrap;
   display: flex;
   gap: 50px;
-  flex-flow: wrap;
-  max-height: 500px;
+  padding: 20px;
 }
 .cms__post {
-  margin-top: 70px;
   width: 100%;
   max-width: 320px;
   background-color: white;

@@ -133,20 +133,11 @@ function Invoicyaccount() {
               </div>
             </div>
           </div>
+          
 
-          <div className="section__content">
-            <div className="section__greeting">
-              <h1 className="section__title">Dashboard</h1>
-              <p className="section__para">
-                Welcome back{" "}
-                {status === "authenticated" ? session?.user.name : "?"}
-              </p>
-            </div>
-            
-
-              <Cms data={data} />
+           <Cms  data={data}/>
          
-          </div>
+         
         </div>
       </section>
     </>

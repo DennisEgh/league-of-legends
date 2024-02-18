@@ -1,10 +1,11 @@
 #dashboard {
   background-color: rgb(0, 0, 0);
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+  
+  
 }
 .account__navigation--container {
   width: 100%;
@@ -26,13 +27,13 @@
   gap: 50px;
 }
 .page__container {
-  width: 100%;
-  max-width: 1600px;
-  height: 100%;
-  display: flex;
-  padding: 20px;
-  justify-content: space-between;
-  align-items: center;
+ width: 100%;
+ height: fit-content;
+ max-width: 1485px;
+ display: flex;
+ position: relative;
+ top: 200px;
+ align-items: center;
 }
 .account__navigation--title {
   cursor: pointer;
@@ -72,17 +73,14 @@
   background-color: #ffffff75;
 }
 
-.section__content {
-  width: 100%;
-  height: 600px;
-  background-color: rgba(128, 128, 128, 0);
-}
+
 .section__title {
   font-size: 34px;
   letter-spacing: 0.6px;
 }
 .section__para {
   margin-top: 15px;
+  margin-bottom: 70px;
 }
 .section__greeting {
   width: 100%;
@@ -186,20 +184,29 @@
   transition: all 300ms ease;
   backdrop-filter: blur(2px);
 }
-.modal{
+.modal {
   transition: all 300ms ease;
-
 }
 .modal__text--field {
   width: 50%;
 }
-.add__invoice{
+.add__invoice {
   filter: brightness(0) invert(1);
   margin-bottom: 20px;
   cursor: pointer;
-
 }
-.flexbox{
+.flexbox {
   display: flex;
   align-items: center;
+}
+
+
+@media (max-width: 680px) {
+  .page__container {
+  }
+}
+@media (max-width: 1055px) {
+  #dashboard{
+    height: calc(100vh + 200px);
+  }
 }

@@ -7,7 +7,6 @@ import Account from "../../style/assets/account.svg";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { Avatar } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -15,6 +14,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
+import MenuIcon from "@mui/icons-material/Menu";
 
 function Navbar() {
   const { status, data: session } = useSession();
@@ -31,7 +31,6 @@ function Navbar() {
   useEffect(() => {
     if (status === "authenticated") {
       toast.success("Signed In");
-    
     } else {
       toast.warning("Signed Out");
     }
@@ -67,14 +66,18 @@ function Navbar() {
         </div>
         <div className="nav__item--end">
           {status === "authenticated" ? (
-            <Avatar
-              onClick={handleClick}
-              alt={session?.user.name}
-              src={session?.user.image}
-              sx={{ width: 24, height: 24, cursor: "pointer" }}
-            />
+           <Link href="" onClick={handleClick}>
+           <Image
+             loading="lazy"
+             width={24}
+             height={24}
+             alt="Account"
+             src={Account}
+             className="account__logo"
+           />
+         </Link>
           ) : (
-            <Link href="/" onClick={() => signIn("google")}>
+            <Link href="" onClick={() => signIn("google")}>
               <Image
                 loading="lazy"
                 width={24}
@@ -85,7 +88,11 @@ function Navbar() {
               />
             </Link>
           )}
-         
+          <div className="burger__menu">
+            <MenuIcon 
+          
+            className="burger"/>
+          </div>
         </div>
       </div>
       <Menu
@@ -132,14 +139,14 @@ function Navbar() {
           </MenuItem>
         </Link>
         <Divider />
-<Link href={"/invoicyaccount/profilesettings"}>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
-</Link>
+        <Link href={"/invoicyaccount/profilesettings"}>
+          <MenuItem onClick={handleClose}>
+            <ListItemIcon>
+              <Settings fontSize="small" />
+            </ListItemIcon>
+            Settings
+          </MenuItem>
+        </Link>
         <MenuItem onClick={() => signOut()}>
           <ListItemIcon>
             <Logout fontSize="small" />
