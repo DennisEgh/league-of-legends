@@ -160,8 +160,15 @@ function Invoices() {
   return (
     <>
       {loading && <Spinner />}
-      <section id="dashboard">
+      <section id="invoices">
         <div className="page__container">
+        <div className="navigation__greeting--container">
+
+        <div className="section__greeting">
+              <h1 className="section__title">Invoices</h1>
+            
+              
+            </div>
           <div className="account__navigation--container">
             <div className="account__navigation">
               <div className="account__navigation--item">
@@ -173,7 +180,7 @@ function Invoices() {
                     className={`logo__bg ${
                       pathname === "/invoicyaccount" ? "active" : ""
                     }`}
-                  >
+                    >
                     <Image
                       className="logo"
                       src={Dashboard}
@@ -181,7 +188,7 @@ function Invoices() {
                       loading="lazy"
                       height={24}
                       alt="Dashboard logo"
-                    />
+                      />
                   </div>
                   <h1 className="account__navigation--title">Dashboard</h1>
                 </Link>
@@ -217,7 +224,7 @@ function Invoices() {
                     className={`logo__bg ${
                       pathname === "/invoicyaccount/invoices" ? "active" : ""
                     }`}
-                  >
+                    >
                     <Image
                       className="logo"
                       src={Invoice}
@@ -232,7 +239,7 @@ function Invoices() {
                 <div
                   onClick={() => signOut()}
                   className="account__navigation--link"
-                >
+                  >
                   <div className="logo__bg--signout">
                     <Image
                       loading="lazy"
@@ -241,18 +248,17 @@ function Invoices() {
                       width={24}
                       height={24}
                       alt="Signout logo"
-                    />
+                      />
                   </div>
                   <h1 className="account__navigation--title">Sign Out</h1>
                 </div>
+                      </div>
               </div>
             </div>
           </div>
 
           <div className="section__content">
-            <div className="section__greeting">
-              <h1 className="section__title">Invoices</h1>
-            </div>
+           
 
             <div className="invoice__interface--container">
               <div className="flexbox">
@@ -273,7 +279,8 @@ function Invoices() {
                   className="add__invoice"
                 />
               </div>
-              <div className="invoice__interface--overview">
+
+              <div className="invoice__interface--overview phone__view">
                 <div className="invoice__search--container">
                   <SearchIcon />
                   <InputBase
@@ -297,7 +304,20 @@ function Invoices() {
                 )
                 .slice(startIndex, endIndex)
                 .map((user, index) => (
-                  <div className="invoice__interface--overview" key={index}>
+                  <div className="invoice__interface--overview " key={index}>
+                       <div className="container__overview phone ">
+                    <div className="invoice__name--container ">
+                      <p className="invoice__interface--para">Name</p>
+                    </div>
+                    <p className="invoice__interface--para">BankGiro</p>
+                    <p className="invoice__interface--para">OCR</p>
+                    <p className="invoice__interface--para">Due Date</p>
+                    <p className="invoice__interface--para">
+                     Amount Due
+                    </p>
+                    </div>
+
+                    <div className="container__overview">
                     <div className="invoice__name--container">
                       <p className="invoice__interface--para">{user.Name}</p>
                     </div>
@@ -307,10 +327,12 @@ function Invoices() {
                     <p className="invoice__interface--para">
                       {user.Amount_Due.toFixed(2)} kr
                     </p>
+                    </div>
+
                     <DeleteOutlineIcon
                       onClick={() => handleDelete(user._id)}
                       className="delete"
-                    />
+                      />
                   </div>
                 ))}
             </div>
