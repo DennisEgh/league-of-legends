@@ -32,6 +32,7 @@ function Invoices() {
   const pagesToShow = 2;
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
+
   const [formData, setFormData] = useState({
     invoiceName: "",
     OCR: "",
@@ -81,6 +82,10 @@ function Invoices() {
       console.error("Error fetching data:", error);
     }
   };
+
+
+ 
+
   useEffect(() => {
     if (status === "authenticated") {
       fetchUser();
@@ -161,7 +166,7 @@ function Invoices() {
     <>
       {loading && <Spinner />}
       <section id="invoices">
-        <div className="page__container">
+        <div className="page__container page__container--invoices">
         <div className="navigation__greeting--container">
 
         <div className="section__greeting">
@@ -258,6 +263,7 @@ function Invoices() {
           </div>
 
            
+<div className="page__control--invoice--container">
 
             <div className="invoice__interface--container">
               <div className="flexbox">
@@ -287,7 +293,7 @@ function Invoices() {
                     sx={{ ml: 1, flex: 1 }}
                     placeholder="Search Invoices"
                     inputProps={{ "aria-label": "search invoices" }}
-                  />
+                    />
                 </div>
 
                 <p className="invoice__interface--para ">OCR</p>
@@ -298,10 +304,10 @@ function Invoices() {
               </div>
               {userData
 
-                .filter((user) =>
-                  user.Name.toLowerCase().includes(searchQuery.toLowerCase())
-                )
-                .slice(startIndex, endIndex)
+.filter((user) =>
+user.Name.toLowerCase().includes(searchQuery.toLowerCase())
+)
+.slice(startIndex, endIndex)
                 .map((user, index) => (
                   <div className="invoice__interface--overview " key={index}>
                   
@@ -353,11 +359,12 @@ function Invoices() {
                   disabled={
                     currentPage === Math.ceil(userData.length / itemsPerPage)
                   }
-                >
+                  >
                   Next
                 </div>
               </div>
             )}
+                  </div>
           </div>
         
         <Modal

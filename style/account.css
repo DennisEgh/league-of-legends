@@ -14,18 +14,13 @@
   align-items: center;
   justify-content: center;
 }
-.account__navigation--container {
-  width: 100%;
-  max-width: 325px;
-}
+
 .account__navigation {
   width: 300px;
   height: 500px;
   background-color: transparent;
-  padding: 20px;
   gap: 25px;
   display: flex;
-  justify-content: center;
 }
 .account__navigation--item {
   display: flex;
@@ -38,8 +33,9 @@
 height: fit-content;
   max-width: 1485px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
 }
+
 .account__navigation--title {
   cursor: pointer;
 
@@ -94,6 +90,7 @@ height: fit-content;
 .invoice__interface--container {
   background-color: rgb(0, 0, 0);
   border-radius: 10px;
+  padding: 20px;
 
 justify-content: flex-start;  display: flex;
   flex-direction: column;
@@ -140,6 +137,7 @@ justify-content: flex-start;  display: flex;
 }
 .pagination-controls {
   display: flex;
+  position: absolute;
   justify-content: center;
   align-items: center;
   gap: 20px;
@@ -207,5 +205,11 @@ justify-content: flex-start;  display: flex;
 .navigation__greeting--container{
   display: flex;
   flex-direction: column;
-align-items: center;
+  align-items: flex-start;
+  margin-left: 150px;
+}
+.page__control--invoice--container{
+  justify-content: center;
+  display: flex;
+  align-items: flex-end;
 }

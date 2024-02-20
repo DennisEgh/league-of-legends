@@ -1,10 +1,10 @@
-
 .dashboard__cms--container {
-width: 100%;
-height: 400px;
-flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+  flex-wrap: wrap;
   display: flex;
   gap: 50px;
+  align-items: center;
   margin-top: 50px;
 }
 .cms__post {
@@ -56,7 +56,6 @@ flex-wrap: wrap;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
   margin-bottom: 20px;
-
 }
 
 .skeleton__text--title {
@@ -65,4 +64,3 @@ flex-wrap: wrap;
 .skeleton__text--para {
   background-color: rgb(0, 0, 0, 0.21);
 }
-
