@@ -5,7 +5,7 @@ height: 400px;
 flex-wrap: wrap;
   display: flex;
   gap: 50px;
-  padding: 20px;
+  margin-top: 50px;
 }
 .cms__post {
   width: 100%;
@@ -66,9 +66,3 @@ flex-wrap: wrap;
   background-color: rgb(0, 0, 0, 0.21);
 }
 
-
-@media (max-width: 670px) {
-  .dashboard__cms--container{
-    justify-content: center;
-  }
-}

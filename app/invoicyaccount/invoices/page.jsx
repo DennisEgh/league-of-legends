@@ -257,7 +257,6 @@ function Invoices() {
             </div>
           </div>
 
-          <div className="section__content">
            
 
             <div className="invoice__interface--container">
@@ -280,7 +279,7 @@ function Invoices() {
                 />
               </div>
 
-              <div className="invoice__interface--overview phone__view">
+              <div className="invoice__interface--overview">
                 <div className="invoice__search--container">
                   <SearchIcon />
                   <InputBase
@@ -305,19 +304,8 @@ function Invoices() {
                 .slice(startIndex, endIndex)
                 .map((user, index) => (
                   <div className="invoice__interface--overview " key={index}>
-                       <div className="container__overview phone ">
-                    <div className="invoice__name--container ">
-                      <p className="invoice__interface--para">Name</p>
-                    </div>
-                    <p className="invoice__interface--para">BankGiro</p>
-                    <p className="invoice__interface--para">OCR</p>
-                    <p className="invoice__interface--para">Due Date</p>
-                    <p className="invoice__interface--para">
-                     Amount Due
-                    </p>
-                    </div>
+                  
 
-                    <div className="container__overview">
                     <div className="invoice__name--container">
                       <p className="invoice__interface--para">{user.Name}</p>
                     </div>
@@ -327,7 +315,7 @@ function Invoices() {
                     <p className="invoice__interface--para">
                       {user.Amount_Due.toFixed(2)} kr
                     </p>
-                    </div>
+                 
 
                     <DeleteOutlineIcon
                       onClick={() => handleDelete(user._id)}
@@ -371,7 +359,7 @@ function Invoices() {
               </div>
             )}
           </div>
-        </div>
+        
         <Modal
           className="modal"
           open={open}
