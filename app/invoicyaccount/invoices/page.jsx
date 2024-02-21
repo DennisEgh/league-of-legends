@@ -68,7 +68,7 @@ function Invoices() {
 
   const fetchUser = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/userFetch");
+      const res = await fetch("http://localhost:3000/api/invoiceFetch");
       const data = await res.json();
 
       const userEmail = session?.user?.email;
@@ -197,30 +197,7 @@ function Invoices() {
                   </div>
                   <h1 className="account__navigation--title">Dashboard</h1>
                 </Link>
-                <Link
-                  className="account__navigation--link"
-                  href={"/invoicyaccount/profilesettings"}
-                >
-                  <div
-                    className={`logo__bg ${
-                      pathname === "/invoicyaccount/profilesettings"
-                        ? "active"
-                        : ""
-                    }`}
-                  >
-                    <Image
-                      className="logo"
-                      src={Settings}
-                      width={24}
-                      height={24}
-                      loading="lazy"
-                      alt="Settings logo"
-                    />
-                  </div>
-                  <h1 className="account__navigation--title">
-                    Profile Settings
-                  </h1>
-                </Link>
+            
                 <Link
                   className="account__navigation--link"
                   href={"/invoicyaccount/invoices"}

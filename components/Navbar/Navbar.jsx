@@ -5,22 +5,47 @@ import Image from "next/image";
 import Logo from "../../style/assets/logo.png";
 import Account from "../../style/assets/account.svg";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { toast } from "sonner";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
-import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
+import Dashboard from "../../style/assets/house.svg"
+import Invoice from "../../style/assets/paper.svg";
 
 function Navbar() {
   const { status, data: session } = useSession();
   const [anchorEl, setAnchorEl] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+  const modalRef = useRef(null);
+
   const open = Boolean(anchorEl);
 
+  const toggleModal = () => {
+    setModalVisible(!modalVisible);
+  };
+
+  const handleClickOutside = (event) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      setModalVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    if (modalVisible) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [modalVisible]);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -66,18 +91,18 @@ function Navbar() {
         </div>
         <div className="nav__item--end">
           {status === "authenticated" ? (
-           <Link href="" onClick={handleClick}>
-           <Image
-             loading="lazy"
-             width={24}
-             height={24}
-             alt="Account"
-             src={Account}
-             className="account__logo"
-           />
-         </Link>
+            <Link className="account" href="" onClick={handleClick}>
+              <Image
+                loading="lazy"
+                width={24}
+                height={24}
+                alt="Account"
+                src={Account}
+                className="account__logo"
+              />
+            </Link>
           ) : (
-            <Link href="" onClick={() => signIn("google")}>
+            <Link  className="account"  href="" onClick={() => signIn("google")}>
               <Image
                 loading="lazy"
                 width={24}
@@ -88,10 +113,8 @@ function Navbar() {
               />
             </Link>
           )}
-          <div className="burger__menu">
-            <MenuIcon 
-          
-            className="burger"/>
+          <div className="burger__menu " onClick={toggleModal}>
+            <MenuIcon className="burger" />
           </div>
         </div>
       </div>
@@ -139,14 +162,7 @@ function Navbar() {
           </MenuItem>
         </Link>
         <Divider />
-        <Link href={"/invoicyaccount/profilesettings"}>
-          <MenuItem onClick={handleClose}>
-            <ListItemIcon>
-              <Settings fontSize="small" />
-            </ListItemIcon>
-            Settings
-          </MenuItem>
-        </Link>
+        
         <MenuItem onClick={() => signOut()}>
           <ListItemIcon>
             <Logout fontSize="small" />
@@ -154,6 +170,48 @@ function Navbar() {
           Logout
         </MenuItem>
       </Menu>
+      <div className={`modal__bg ${modalVisible ? "modalVisible" : ""}`}></div>
+      <div
+        ref={modalRef}
+        className={`modal ${modalVisible ? "modalVisible" : ""}`}
+      >
+        <div className="modal__items">
+          <div className="modal__item">
+          <Image
+                loading="lazy"
+                width={24}
+                height={24}
+                alt="Account"
+                src={Account}
+                className="account__logo"
+              />
+            <h1 className="modal__title">Account</h1>
+          </div>
+          <div className="divider"></div>
+          <div className="modal__item">
+          <Image
+                        className="logo"
+                        src={Dashboard}
+                        width={24}
+                        loading="lazy"
+                        height={24}
+                        alt="Dashboard logo"
+                      />
+            <h1 className="modal__title">Dashboard</h1>
+          </div>
+          <div className="modal__item">
+          <Image
+                        className="logo"
+                        src={Invoice}
+                        width={24}
+                        loading="lazy"
+                        height={24}
+                        alt="Invoice logo"
+                      />
+            <h1 className="modal__title">Invoices</h1>
+          </div>
+        </div>
+      </div>
     </nav>
   );
 }
