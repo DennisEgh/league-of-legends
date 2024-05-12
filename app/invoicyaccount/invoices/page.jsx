@@ -83,9 +83,6 @@ function Invoices() {
     }
   };
 
-
- 
-
   useEffect(() => {
     if (status === "authenticated") {
       fetchUser();
@@ -167,81 +164,76 @@ function Invoices() {
       {loading && <Spinner />}
       <section id="invoices">
         <div className="page__container page__container--invoices">
-        <div className="navigation__greeting--container">
-
-        <div className="section__greeting">
+          <div className="navigation__greeting--container">
+            <div className="section__greeting">
               <h1 className="section__title">Invoices</h1>
-            
-              
             </div>
-          <div className="account__navigation--container">
-            <div className="account__navigation">
-              <div className="account__navigation--item">
-                <Link
-                  className="account__navigation--link"
-                  href={"/invoicyaccount"}
-                >
-                  <div
-                    className={`logo__bg ${
-                      pathname === "/invoicyaccount" ? "active" : ""
-                    }`}
-                    >
-                    <Image
-                      className="logo"
-                      src={Dashboard}
-                      width={24}
-                      loading="lazy"
-                      height={24}
-                      alt="Dashboard logo"
-                      />
-                  </div>
-                  <h1 className="account__navigation--title">Dashboard</h1>
-                </Link>
-            
-                <Link
-                  className="account__navigation--link"
-                  href={"/invoicyaccount/invoices"}
-                >
-                  <div
-                    className={`logo__bg ${
-                      pathname === "/invoicyaccount/invoices" ? "active" : ""
-                    }`}
-                    >
-                    <Image
-                      className="logo"
-                      src={Invoice}
-                      width={24}
-                      loading="lazy"
-                      height={24}
-                      alt="Invoice logo"
-                    />
-                  </div>
-                  <h1 className="account__navigation--title">Invoices</h1>
-                </Link>
-                <div
-                  onClick={() => signOut()}
-                  className="account__navigation--link"
+            <div className="account__navigation--container">
+              <div className="account__navigation">
+                <div className="account__navigation--item">
+                  <Link
+                    className="account__navigation--link"
+                    href={"/invoicyaccount"}
                   >
-                  <div className="logo__bg--signout">
-                    <Image
-                      loading="lazy"
-                      className="logo"
-                      src={Signout}
-                      width={24}
-                      height={24}
-                      alt="Signout logo"
+                    <div
+                      className={`logo__bg ${
+                        pathname === "/invoicyaccount" ? "active" : ""
+                      }`}
+                    >
+                      <Image
+                        className="logo"
+                        src={Dashboard}
+                        width={24}
+                        loading="lazy"
+                        height={24}
+                        alt="Dashboard logo"
                       />
+                    </div>
+                    <h1 className="account__navigation--title">Dashboard</h1>
+                  </Link>
+
+                  <Link
+                    className="account__navigation--link"
+                    href={"/invoicyaccount/invoices"}
+                  >
+                    <div
+                      className={`logo__bg ${
+                        pathname === "/invoicyaccount/invoices" ? "active" : ""
+                      }`}
+                    >
+                      <Image
+                        className="logo"
+                        src={Invoice}
+                        width={24}
+                        loading="lazy"
+                        height={24}
+                        alt="Invoice logo"
+                      />
+                    </div>
+                    <h1 className="account__navigation--title">Invoices</h1>
+                  </Link>
+                  <div
+                    onClick={() => signOut()}
+                    className="account__navigation--link"
+                  >
+                    <div className="logo__bg--signout">
+                      <Image
+                        loading="lazy"
+                        className="logo"
+                        src={Signout}
+                        width={24}
+                        height={24}
+                        alt="Signout logo"
+                      />
+                    </div>
+                    <h1 className="account__navigation--title">Sign Out</h1>
                   </div>
-                  <h1 className="account__navigation--title">Sign Out</h1>
                 </div>
-                      </div>
               </div>
             </div>
           </div>
 
-           
-<div className="page__control--invoice--container">
-
+          <div className="page__control--invoice--container">
             <div className="invoice__interface--container">
               <div className="flexbox">
                 {userData.length > 0 && (
@@ -270,7 +262,7 @@ function Invoices() {
                     sx={{ ml: 1, flex: 1 }}
                     placeholder="Search Invoices"
                     inputProps={{ "aria-label": "search invoices" }}
-                    />
+                  />
                 </div>
 
                 <p className="invoice__interface--para ">OCR</p>
@@ -281,14 +273,12 @@ function Invoices() {
               </div>
               {userData
 
-.filter((user) =>
-user.Name.toLowerCase().includes(searchQuery.toLowerCase())
-)
-.slice(startIndex, endIndex)
+                .filter((user) =>
+                  user.Name.toLowerCase().includes(searchQuery.toLowerCase())
+                )
+                .slice(startIndex, endIndex)
                 .map((user, index) => (
                   <div className="invoice__interface--overview " key={index}>
-                  
-
                     <div className="invoice__name--container">
                       <p className="invoice__interface--para">{user.Name}</p>
                     </div>
@@ -298,12 +288,11 @@ user.Name.toLowerCase().includes(searchQuery.toLowerCase())
                     <p className="invoice__interface--para">
                       {user.Amount_Due.toFixed(2)} kr
                     </p>
-                 
 
                     <DeleteOutlineIcon
                       onClick={() => handleDelete(user._id)}
                       className="delete"
-                      />
+                    />
                   </div>
                 ))}
             </div>
@@ -336,16 +325,15 @@ user.Name.toLowerCase().includes(searchQuery.toLowerCase())
                   disabled={
                     currentPage === Math.ceil(userData.length / itemsPerPage)
                   }
-                  >
+                >
                   Next
                 </div>
               </div>
             )}
-                  </div>
           </div>
-        
+        </div>
+
         <Modal
-          className="modal"
           open={open}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"

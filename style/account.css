@@ -164,14 +164,13 @@ justify-content: flex-start;  display: flex;
   cursor: pointer;
 }
 .box__css {
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
   max-width: 800px;
   transition: all 300ms ease;
-
   height: 500px;
   background-color: white;
   border-radius: 10px;
@@ -187,9 +186,7 @@ justify-content: flex-start;  display: flex;
   transition: all 300ms ease;
   backdrop-filter: blur(2px);
 }
-.modal {
-  transition: all 300ms ease;
-}
+
 .modal__text--field {
   width: 50%;
 }

@@ -12,12 +12,7 @@
   
 }
 .app {
-  overflow-x: hidden;
-  background-color: black;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  min-height: 100vh;
+background-color: black;
 }
 ::-webkit-scrollbar {
   display: none;
@@ -50,6 +45,8 @@ section {
   width: 100vw;
   display: flex;
   z-index: 2;
+  overflow-x: hidden;
+
 }
 
 /* LANDING PAGE */
