@@ -20,7 +20,7 @@ const authOptions = {
           const userExists = await User.findOne({ email });
 
           if (!userExists) {
-            const res = await fetch("http://localhost:3000/api/userCreate", {
+            const res = await fetch("https://invoicywebsite.netlify.app/api/userCreate", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

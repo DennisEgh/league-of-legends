@@ -68,7 +68,7 @@ function Invoices() {
 
   const fetchUser = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/invoiceFetch");
+      const res = await fetch("https://invoicywebsite.netlify.app/api/invoiceFetch");
       const data = await res.json();
 
       const userEmail = session?.user?.email;
@@ -97,7 +97,7 @@ function Invoices() {
         ? `${dueDate.$M + 1}/${dueDate.$D}/${dueDate.$y}`
         : null;
 
-      const response = await fetch("http://localhost:3000/api/invoiceCreate", {
+      const response = await fetch("https://invoicywebsite.netlify.app/api/invoiceCreate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -135,7 +135,7 @@ function Invoices() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/invoiceDelete`, {
+      const response = await fetch(`https://invoicywebsite.netlify.app/api/invoiceDelete`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
