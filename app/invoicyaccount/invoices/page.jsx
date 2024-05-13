@@ -69,8 +69,7 @@ function Invoices() {
   const fetchUser = async () => {
     try {
       const res = await fetch(
-        "https://invoicywebsite.netlify.app/api/invoiceFetch",
-        { cache: "no-store" }
+        "https://invoicywebsite.netlify.app/api/invoiceFetch"
       );
       const data = await res.json();
 
