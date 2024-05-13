@@ -29,11 +29,6 @@ function Navbar() {
     setModalVisible(!modalVisible);
   };
 
-  const handleSignOut = () =>{
-    localStorage.clear()
-    signOut()
-  }
-
   const handleClickOutside = (event) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
       setModalVisible(false);
@@ -168,7 +163,7 @@ function Navbar() {
         </Link>
         <Divider />
         
-        <MenuItem onClick={() => handleSignOut()}>
+        <MenuItem onClick={() => signOut()}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

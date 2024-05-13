@@ -4,11 +4,15 @@ import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 
 const authOptions = {
+  session: {
+    jwt: true,
+    transient: true,
+  },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_SECRET,
-      prompt: 'select_account',
+      prompt: "select_account",
     }),
   ],
   callbacks: {
