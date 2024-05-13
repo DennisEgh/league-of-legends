@@ -77,7 +77,6 @@ function Invoices() {
         setUserData(filteredPosts);
         console.log(userData)
       }
-
       setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
