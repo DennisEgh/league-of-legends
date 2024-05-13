@@ -8,3 +8,4 @@ export async function POST(req){
     await User.create({name, email})
     return NextResponse.json({message: "User Registered"}, {status: 201})
 }
+export const dynamic = "force-dynamic"
