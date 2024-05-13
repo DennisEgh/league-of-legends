@@ -13,4 +13,3 @@ export async function DELETE(req) {
     { status: 200 }
   );
 }
-export const dynamic = "force-dynamic"

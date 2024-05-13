@@ -8,4 +8,3 @@ export const GET = async () => {
 
   return new NextResponse(JSON.stringify(invoice), { status: 200 });
 };
-export const dynamic = "force-dynamic"
