@@ -145,7 +145,6 @@ function Invoices() {
       const response = await fetch(
         `https://invoicywebsite.netlify.app/api/invoiceDelete`,
 
-        { cache: "no-store" },
         {
           method: "DELETE",
           headers: {
