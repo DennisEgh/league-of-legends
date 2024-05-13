@@ -68,14 +68,17 @@ function Invoices() {
 
   const fetchUser = async () => {
     try {
-      const res = await fetch("https://invoicywebsite.netlify.app/api/invoiceFetch");
+      const res = await fetch(
+        "https://invoicywebsite.netlify.app/api/invoiceFetch",
+        { cache: "no-store" }
+      );
       const data = await res.json();
 
       const userEmail = session?.user?.email;
       if (userEmail) {
         const filteredPosts = data.filter((user) => user.email === userEmail);
         setUserData(filteredPosts);
-        console.log(userData)
+        console.log(userData);
       }
       setLoading(false);
     } catch (error) {
@@ -97,20 +100,23 @@ function Invoices() {
         ? `${dueDate.$M + 1}/${dueDate.$D}/${dueDate.$y}`
         : null;
 
-      const response = await fetch("https://invoicywebsite.netlify.app/api/invoiceCreate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          OCR,
-          email,
-          BankGiro,
-          Due_Date: formattedDueDate,
-          Amount_Due: Amount,
-          Name: invoiceName,
-        }),
-      });
+      const response = await fetch(
+        "https://invoicywebsite.netlify.app/api/invoiceCreate",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            OCR,
+            email,
+            BankGiro,
+            Due_Date: formattedDueDate,
+            Amount_Due: Amount,
+            Name: invoiceName,
+          }),
+        }
+      );
 
       if (!response.ok) {
         console.error("Failed to create invoice:", response.statusText);
@@ -135,15 +141,18 @@ function Invoices() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`https://invoicywebsite.netlify.app/api/invoiceDelete`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id,
-        }),
-      });
+      const response = await fetch(
+        `https://invoicywebsite.netlify.app/api/invoiceDelete`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id,
+          }),
+        }
+      );
 
       if (!response.ok) {
         console.error("Failed to delete invoice:", response.statusText);
