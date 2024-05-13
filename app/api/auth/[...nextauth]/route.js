@@ -18,18 +18,20 @@ const authOptions = {
           await conntectMongoDB();
 
           const userExists = await User.findOne({ email });
-
           if (!userExists) {
-            const res = await fetch("https://invoicywebsite.netlify.app/api/userCreate", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                name,
-                email,
-              }),
-            });
+            const res = await fetch(
+              "https://invoicywebsite.netlify.app/api/userCreate",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  name,
+                  email,
+                }),
+              }
+            );
 
             if (res.ok) {
               return user;

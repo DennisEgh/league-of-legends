@@ -75,6 +75,7 @@ function Invoices() {
       if (userEmail) {
         const filteredPosts = data.filter((user) => user.email === userEmail);
         setUserData(filteredPosts);
+        console.log(userData)
       }
 
       setLoading(false);

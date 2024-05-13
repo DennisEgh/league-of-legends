@@ -1,5 +1,3 @@
-// api/invoiceCreate.js
-
 import { conntectMongoDB } from "@/lib/mongodb";
 import Invoice from "@/models/invoice";
 import { NextResponse } from "next/server";
