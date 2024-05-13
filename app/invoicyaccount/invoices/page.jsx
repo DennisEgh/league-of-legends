@@ -103,7 +103,6 @@ function Invoices() {
       const response = await fetch(
         "https://invoicywebsite.netlify.app/api/invoiceCreate",
 
-        { cache: "no-store" },
         {
           method: "POST",
           headers: {
